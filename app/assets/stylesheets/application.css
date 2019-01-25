@@ -12,4 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *= require nowui/bootstrap.min
+ *= require nowui/now-ui-kit
  */

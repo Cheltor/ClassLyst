@@ -13,4 +13,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require nowui/jquery.min
+//= require nowui/popper.min
+//= require nowui/bootstrap.min
+//= require nowui/bootstrap-switch
+//= require nowui/nouislider.min
+//= require nowui/moment.min
+//= require nowui/bootstrap-tagsinput
+//= require nowui/bootstrap-selectpicker
+//= require nowui/bootstrap-datetimepicker
+//= require nowui/jasny-bootstrap.min
+//= require nowui/now-ui-kit
 //= require_tree .
