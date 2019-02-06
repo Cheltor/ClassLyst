@@ -66,3 +66,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Webpacker for fancy js?
 gem 'webpacker', '~> 3.5'
+
+# Pagination
+gem 'kaminari'
