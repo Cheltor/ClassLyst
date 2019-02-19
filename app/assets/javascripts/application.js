@@ -24,4 +24,5 @@
 //= require nowui/bootstrap-datetimepicker
 //= require nowui/jasny-bootstrap.min
 //= require nowui/now-ui-kit
+//= require select2
 //= require_tree .
