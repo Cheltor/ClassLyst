@@ -72,3 +72,6 @@ gem 'kaminari'
 
 # Select2
 gem "select2-rails"
+
+# Voting
+gem 'acts_as_votable', '~> 0.11.1'

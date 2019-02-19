@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   resources :rewards
   resources :posts do
-    resources :comments, module: :posts
+    resources :comments, module: :posts do
+      member do
+        put "like",    to:"comments#upvote"
+        put "dislike", to:"comments#downvote"
+      end
+    end
+    member do
+      put "like",    to:"posts#upvote"
+      put "dislike", to:"posts#downvote"
+    end
   end
   resources :courses
   resources :universities

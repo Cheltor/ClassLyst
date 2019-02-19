@@ -9,6 +9,11 @@
   <% else %>
     <strong><%= comment.user.email %></strong> posted
     <%= simple_format comment.body %>
+
+    <div class="media-footer">
+     <%= link_to like_post_comment_path(@post, comment), :class => "btn btn-default", method: :put do %>upvote (<%= comment.get_upvotes.size %>)<% end %>
+     <%= link_to dislike_post_comment_path(@post, comment), :class => "btn btn-default", method: :put do %>downvote (<%= comment.get_downvotes.size %>)<% end %>
+    </div>
   <% end %>
 
    <div data-controller="reply">
