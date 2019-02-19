@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rewards
   resources :posts do
     resources :comments, module: :posts
   end
