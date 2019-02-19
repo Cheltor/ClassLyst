@@ -17,42 +17,52 @@ class CommentsController < ApplicationController
     redirect_to @commentable
   end
 
+  # Voting
   def upvote
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-    if current_user.voted_up_on? @comment
-      redirect_to :back
-    elsif current_user.voted_down_on? @comment
-      @comment.upvote_by current_user
-      @comment.user.increase_karma
-      @comment.user.increase_karma
-      @comment.user.increase_reputation
-      @comment.user.increase_reputation
-      redirect_to :back
+    if @comment.user == current_user
+      redirect_to :back, notice: "Can't vote on your own comment" 
     else
-      @comment.upvote_by current_user
-      @comment.user.increase_karma
-      @comment.user.increase_reputation
-      redirect_to :back
+      if current_user.voted_up_on? @comment
+        redirect_to :back
+      elsif current_user.voted_down_on? @comment
+        @comment.upvote_by current_user
+        @comment.user.increase_karma
+        @comment.user.increase_karma
+        @comment.user.increase_reputation
+        @comment.user.increase_reputation
+        redirect_to :back
+      else
+        @comment.upvote_by current_user
+        @comment.user.increase_karma
+        @comment.user.increase_reputation
+        redirect_to :back
+      end
     end
   end
-
-   def downvote
+  
+  def downvote
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    if current_user.voted_down_on? @comment
-      redirect_to :back
-    elsif current_user.voted_up_on? @comment
-      @comment.downvote_by current_user
-      @comment.user.decrease_karma
-      @comment.user.decrease_karma
-      @comment.user.decrease_reputation
-      @comment.user.decrease_reputation
-      redirect_to :back
+    if @comment.user == current_user
+      redirect_to :back, notice: "Can't vote on your own comment" 
     else
-      @comment.downvote_by current_user
-      @comment.user.decrease_karma
-      @comment.user.decrease_reputation
-      redirect_to :back
+      if current_user.voted_down_on? @comment
+        redirect_to :back
+      elsif current_user.voted_up_on? @comment
+        @comment.downvote_by current_user
+        @comment.user.decrease_karma
+        @comment.user.decrease_karma
+        @comment.user.decrease_reputation
+        @comment.user.decrease_reputation
+        redirect_to :back
+      else
+        @comment.downvote_by current_user
+        @comment.user.decrease_karma
+        @comment.user.decrease_reputation
+        redirect_to :back
+      end
     end
   end
 
