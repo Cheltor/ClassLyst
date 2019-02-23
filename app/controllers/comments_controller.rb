@@ -17,6 +17,12 @@ class CommentsController < ApplicationController
     redirect_to @commentable
   end
 
+  def hide
+    @comment = @commentable.comments.find(params[:id])
+    @comment.hide
+    redirect_to @commentable
+  end
+
   # Voting
   def upvote
     @post = Post.find(params[:post_id])

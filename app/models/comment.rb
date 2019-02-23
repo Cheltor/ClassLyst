@@ -4,16 +4,23 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :parent, optional: true, class_name: "Comment"
 
-   def comments
+  def comments
     Comment.where(commentable: commentable, parent_id: id)
   end
 
-   def destroy
+  def destroy
     update(user: nil, body: nil)
   end
 
-   def deleted?
+  def deleted?
     user.nil?
+  end
+
+  def hide
+    update(hidden: true)
+  end
+
+  def hidden?
   end
 
    # Alternatively, we could move all the children to point to our parent instead
