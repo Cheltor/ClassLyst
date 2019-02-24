@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_21_023625) do
+ActiveRecord::Schema.define(version: 2019_02_23_232511) do
 
   create_table "businesses", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_02_21_023625) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "flagged", default: false
     t.index ["course_id"], name: "index_posts_on_course_id"
     t.index ["ptype_id"], name: "index_posts_on_ptype_id"
     t.index ["user_id"], name: "index_posts_on_user_id"

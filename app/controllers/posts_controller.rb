@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :flag]
   before_action :authenticate_user!, :except => [:index, :show]
   before_action :authorized_user, only: [:edit, :update]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.where(flagged: false)
   end
 
   # GET /posts/1
@@ -18,6 +18,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = current_user.posts.build
+  end
+
+
+  def flag
+    @post.flag
+    redirect_to @post
   end
 
   # GET /posts/1/edit

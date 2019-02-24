@@ -20,12 +20,13 @@
   <% end %>
 
    <div data-controller="reply">
-   	<%= nesting %>
-    <%= max_nesting %>
-    <%= render partial: "comments/form", locals: { commentable: @post, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 d-none", target: "reply.form" } %>
-      <%= link_to "Reply", "#", data: { action: "click->reply#toggle" } %>
+      <%= render partial: "comments/form", locals: { commentable: @post, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 d-none", target: "reply.form" } %>
+      <%= link_to "Reply", "#", data: { action: "click->reply#toggle" } if comment.hidden == false %>
       <%= link_to "Delete", [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"} if comment.user == current_user %>
-      <%= link_to "Hide", hide_post_comment_path(@post, comment), method: :patch, data: {confirm: "Are you sure?"} %>
+      <% if comment.deleted? %>
+      <% else %>
+        <%= link_to "Hide", hide_post_comment_path(@post, comment), method: :patch, data: {confirm: "Are you sure?"} if comment.hidden == false %>
+      <% end %>
   </div>
 
   <%= render comment.comments, nesting: nesting + 1, max_nesting: local_assigns[:max_nesting] %>
