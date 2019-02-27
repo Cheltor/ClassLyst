@@ -14,7 +14,12 @@ Rails.application.routes.draw do
       patch :flag
     end
   end
-  resources :courses
+  resources :courses do
+    member do
+      post 'enroll'
+    end
+  end 
+  resources :enrolls
   resources :universities
   devise_for :businesses
   devise_for :users

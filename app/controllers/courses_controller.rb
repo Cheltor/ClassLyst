@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :admin_user
+  before_action :admin_user, except: [:index, :show]
   
   # GET /courses
   # GET /courses.json
@@ -12,6 +12,14 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @posts = Post.all.where(course_id: @course.id).where(flagged: false)
+
+     if user_signed_in?
+      @enrolls = Enroll.all.where(user_id: current_user.id).where(course_id: @course.id)
+      @signup = Enroll.all.where(course_id: @course.id)
+    else
+      @enrolls = Enroll.all.where(course_id: @course.id)
+    end
   end
 
   # GET /courses/new
@@ -61,6 +69,24 @@ class CoursesController < ApplicationController
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /enrolls
+  # POST /enrolls.json
+  def enroll
+    @course = Course.find(params[:id])
+    @enroll = @course.enrolls.create(params.permit(:course_id,:user_id))
+    @enroll.user_id = current_user.id
+
+       respond_to do |format|
+        if @enroll.save
+          format.html { redirect_to @course, notice: 'Enroll was successfully created.' }
+          format.json { render json: @enroll, status: :created, location: @enroll }
+        else
+          format.html { redirect_to @course}
+          format.json { render json: @enroll.errors, status: :unprocessable_entity }
+        end
+      end
   end
 
   private
