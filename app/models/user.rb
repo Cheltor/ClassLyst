@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :enrolls
   has_many :courses, :through => :enrolls
 
+  has_many :rewardpurchases
+
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)
   end

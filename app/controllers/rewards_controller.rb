@@ -1,6 +1,6 @@
 class RewardsController < ApplicationController
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_business!, :except => [:index, :show]
+  before_action :authenticate_business!, :except => [:index, :show, :rewardpurchase]
   before_action :authorized_business, only: [:edit, :update]
 
   # GET /rewards
@@ -61,6 +61,27 @@ class RewardsController < ApplicationController
       format.html { redirect_to rewards_url, notice: 'Reward was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # POST /purchase
+  # POST /purchase.json
+  def rewardpurchase
+    @reward = Reward.find(params[:id]).clone
+    @rewardpurchase = @reward.rewardpurchases.create(params.permit(:reward_id,:user_id,:rewardname,:rewardbusiness,:rewardcost))
+    @rewardpurchase.rewardname = @reward.name.dup
+    @rewardpurchase.rewardbusiness = @reward.business.name.dup
+    @rewardpurchase.rewardcost = @reward.cost.to_s.dup
+    @rewardpurchase.user_id = current_user.id
+
+       respond_to do |format|
+        if @rewardpurchase.save
+          format.html { redirect_to @reward, notice: 'Purchase was successfully created.' }
+          format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }
+        else
+          format.html { redirect_to @reward}
+          format.json { render json: @rewardpurchase.errors, status: :unprocessable_entity }
+        end
+      end
   end
 
   private

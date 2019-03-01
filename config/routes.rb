@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :rewards
+  get 'rewardpurchases/myrewards'
+  resources :rewards do
+    member do
+      post 'rewardpurchase'
+    end
+  end
   resources :posts do
     resources :comments, module: :posts do
       member do
