@@ -1,30 +1,136 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-
 <% if user_signed_in? %>
-	  <div style="text-align:center">
-	    <h3>You currently have <%= current_user.try(:karma) %> karma.</h3>
-	    <h3>You currently have <%= current_user.try(:reputation) %> reputation.</h3>
-  </div>
+<% @title= current_user.email %>
+<%= render "layouts/dashboard/userdash" %>
+<%= render "layouts/footer/footer" %>
+<% elsif business_signed_in? %>
+<% @title= current_business.name %>
+<%= render "static/bizdash" %>
+<%= render "layouts/footer/footer" %>
+<% else %>
+
+<div class="header-2">
+    <div class="page-header header-filter page-header-small">
+      <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h1 class="title">Search all of the posts</h1>
+          </div>
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+              <div class="card-body">
+            <%= search_form_for @search, url: posts_path, defaults: {wrapper: :inline_field4} do |f| %>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="form-group">
+                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+              <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
 <% end %>
 
-
-	<% if @enrolls.blank? %>
-    <h5 style= "text-align:center">You haven't signed up for any courses yet.</h5>
-    <p style= "text-align:center"><%= link_to 'Courses', courses_path, class: "btn btn-primary btn-round btn-fill" %></p>
-  <% else %>
-  <% @enrolls.each do |enroll| %>
-    <div class="card container-fluid">
-        <div class="header">
-            <h4 class="title"><%= enroll.course.try(:name) %></h4>
-            <p class="category"><div class="btn-group"><%= link_to 'Course Page', course_path(enroll.course), :class => 'btn btn-primary' %><%= link_to 'Unenroll', enroll, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></div></p>
+<div class="features-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <h2 class="title">Simpler. Smarter. Faster.</h2>
+        <h4 class="description">ClassLyst is the online community for students to learn, share their knowledge and recieve rewards.</h4>
+        <div class="info info-horizontal">
+            <%= link_to posts_path do %>
+            <div class="icon icon-success icon-circle">
+              <i class="material-icons">
+                question_answer
+              </i>
+            </div><% end %>
+          <div class="description">
+            <%= link_to posts_path do %>
+            <h4 class="info-title">Search Posts</h4>
+            <% end %>
+            <p>Find answers to questions already asked, answers found, and more.</p>
+          </div>
         </div>
-        <div class="content">
-            <%= enroll.course.posts.count %> posts
-            <%= enroll.course.enrolls.count %> enrolls
+        <div class="info info-horizontal">
+            <%= link_to courses_path do %>
+            <div class="icon icon-info icon-circle">
+                <i class="material-icons">
+                account_balance
+                </i>
+            </div><% end %>
+          <div class="description">
+            <%= link_to courses_path do %>
+            <h4 class="info-title">Search by class</h4>
+            <% end %>
+            <p>Find information associated with each of your classes.</p>
+          </div>
         </div>
+        <div class="info info-horizontal">
+            <%= link_to rewards_path do %>
+            <div class="icon icon-warning icon-circle">
+                <i class="material-icons">
+                redeem
+                </i>
+            </div><% end %>
+          <div class="description">
+            <%= link_to rewards_path do %>
+            <h4 class="info-title">Earn rewards</h4>
+            <% end %>
+            <p>Earn points for submitting helpful posts or answering questions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="tablet-container">
+          <div class="container-fluid">
+            <h3 style="text-align:center">Recent Posts</h3>
+            <div class="card">
+              <div class="card-content" style="text-align:center">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead class="text-primary">
+                              <tr>
+                                <th>Title</th>
+                                <th>Course</th>
+                                <th>Time created</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @posts.each do |post| %>
+                              <tr>
+                                <td><strong><%= link_to post.title, post %></strong></td>
+                                <td><%= link_to post.course.name, post.course %></td>
+                                <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="row">
+                    <div class="col mr-auto ml-auto">
+                      <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                        <%= link_to 'More Posts', posts_path, class:"btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-  <% end %>
-<br/>
+  </div>
+</div>
+<% end %>

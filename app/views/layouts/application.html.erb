@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 
-  <title>Skoosm | <%= @title %></title>
+  <title>ClassLyst | <%= @title %></title>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -26,8 +26,15 @@
   </head>
 
   <body>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+    <%= render "layouts/header/user_navbar" %>
+    <% elsif business_signed_in? %>
+    <%= render "layouts/header/business_navbar" %>
+    <% else %>
+    <%= render "layouts/header/navbar" %>
+    <% end %>
+      
+    TEST
       <% if user_signed_in? %>
           <li>
           <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
@@ -38,5 +45,6 @@
           </li>
         <% end %>
     <%= yield %>
+    <%= render "layouts/footer/footer" %>
   </body>
 </html>

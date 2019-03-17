@@ -27,9 +27,26 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+/* Display only on mobile or desktop */
+@media screen and (max-width: 767px) {
+  .desktop-only {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .mobile-only {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
-@media screen and (max-width: 768px) {
+
+/* Mobile */
+@media screen and (max-width: 769px) {
   html {
     position: relative;
     min-height: 100%;
@@ -47,7 +64,8 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+/* Desktop */
+@media screen and (min-width: 769px) {
   html {
     position: relative;
     min-height: 100%;
@@ -63,8 +81,8 @@
     /* Set the fixed height of the footer here */
     height: 79px;
   }
-}
 
+}
 
  
 .apple_pagination {
@@ -8606,7 +8624,7 @@ img {
 }
 
 .page-header:before {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .page-header>.container {

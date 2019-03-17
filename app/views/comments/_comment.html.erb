@@ -10,24 +10,27 @@
     <strong>[removed]</strong> posted
     <p>[removed]</p>    
   <% else %>
-    <strong><%= comment.user.email %></strong> posted
-    <%= simple_format comment.body %>
+    <strong><%= comment.user.email %></strong>
+      posted
+  <div>
 
-    <div class="media-footer">
-     <%= link_to like_post_comment_path(@post, comment), :class => "btn btn-default", method: :put do %>upvote (<%= comment.get_upvotes.size %>)<% end %>
-     <%= link_to dislike_post_comment_path(@post, comment), :class => "btn btn-default", method: :put do %>downvote (<%= comment.get_downvotes.size %>)<% end %>
+    <%= simple_format comment.body %>
+         <div class="row " data-controller="reply">
+          
+            <%= render partial: "comments/form", locals: { commentable: @post, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 d-none", target: "reply.form" } %>
+            <div>
+            <%= link_to like_post_comment_path(@post, comment), method: :put, class:"btn btn-info btn-neutral pull-right" do %><i class="material-icons">thumb_up</i> <%= comment.get_upvotes.size %><% end %>
+            <%= link_to "#", data: { action: "click->reply#toggle" }, class: "btn btn-primary btn-neutral pull-right" do %><i class="material-icons">chat</i> Reply<% end %>
+            <%= link_to [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-neutral pull-right" do %><i class="material-icons">delete</i><% end %>
+            <% if comment.deleted? %>
+            <% else %>
+              <%= link_to hide_post_comment_path(@post, comment), method: :patch, data: {confirm: "Are you sure?"}, class:"btn btn-danger btn-neutral pull-right" do %><i class="material-icons">flag</i><% end %>
+            <% end %>
     </div>
+   </div>
+  </div>
   <% end %>
 
-   <div data-controller="reply">
-      <%= render partial: "comments/form", locals: { commentable: @post, parent_id: reply_to_comment_id(comment, nesting, max_nesting), class: "mt-4 d-none", target: "reply.form" } %>
-      <%= link_to "Reply", "#", data: { action: "click->reply#toggle" } if comment.hidden == false %>
-      <%= link_to "Delete", [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"} if comment.user == current_user %>
-      <% if comment.deleted? %>
-      <% else %>
-        <%= link_to "Hide", hide_post_comment_path(@post, comment), method: :patch, data: {confirm: "Are you sure?"} if comment.hidden == false %>
-      <% end %>
-  </div>
 
   <%= render comment.comments, nesting: nesting + 1, max_nesting: local_assigns[:max_nesting] %>
 </div>

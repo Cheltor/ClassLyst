@@ -1,37 +1,87 @@
-<p id="notice"><%= notice %></p>
+<% @title="Posts" %>
 
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Course</th>
-      <th>Ptype</th>
-      <th>Title</th>
-      <th>Url</th>
-      <th>Content</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="contatiner">
+    <div class="header-2">
+        <div class="page-header header-filter page-header-mini">
+          <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 ml-auto mr-auto">
+                <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+                  <div class="card-body">
+                    <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
+                      <div class="row">
+                        <div class="col-md-9">
+                          <div class="form-group">
+                       <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control" %>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
+  <% if @posts.blank? %>
+  <% else %>
+  <br>
+  <h1 style="text-align:center">Posts</h1>
+  <br>
+  <div class="container">
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.course %></td>
-        <td><%= post.ptype %></td>
-        <td><%= post.title %></td>
-        <td><%= post.url %></td>
-        <td><%= post.content %></td>
-        <td><%= post.user %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="card">
+      <div class="container">
+        <h4>
+          <%= link_to truncate(post.title, :length => 50), post %>
+            <% if post.url == "" %>
+            <% else %><i class="material-icons">attach_file</i>
+            <% end %>
+              <div class="pull-right desktop-only">
+                <%= link_to dislike_post_path(post), class: "pull-right", method: :put do %><i class="material-icons">thumb_down</i><% end %>
+                <%= link_to like_post_path(post), class: "pull-right", method: :put do %><i class="material-icons" style="padding-right: 5px">thumb_up</i><% end %>
+                  <div class="pull-right" style="padding-right: 10px">
+                    <%= pluralize(post.try(:weighted_score), 'point')%>
+                  </div>
+              </div>
+                <br>
+                <small><% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong> for <%= link_to post.course.name, post.course %> </small>
+                <small class="mobile-only">
+                  <br>
+                <%= link_to dislike_post_path(post), method: :put do %><i class="material-icons pull-right">thumb_down</i><% end %>
+                <%= link_to like_post_path(post), method: :put do %><i class="material-icons pull-right" style="padding-right: 5px">thumb_up</i><% end %>
+                  <div class="pull-right" style="padding-right: 10px">
+                    <%= pluralize(post.try(:weighted_score), 'point')%>
+                  </div>
+                </small>
+              </h4>
+        <p><%= truncate(post.content, :length => 250) %></p>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+  </div>
+  <div class="about-contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mr-auto ml-auto">
+          <h2 class="text-center title">Couldn't find what you're looking for?</h2>
+          <h4 class="text-center description">Submit a post with your question and see if anyone else has found it.</h4>
+          <div style="text-align:center">
+          <%= link_to 'New Post', new_post_path, class:"btn btn-simple btn-primary btn-round mt-4 btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<br>
 
-<%= link_to 'New Post', new_post_path %>
