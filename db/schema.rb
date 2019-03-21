@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_02_28_001619) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "businesses", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -34,9 +37,9 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "commentable_type"
-    t.integer "commentable_id"
+    t.bigint "commentable_id"
     t.integer "parent_id"
     t.text "body"
     t.datetime "created_at", null: false
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.integer "university_id"
+    t.bigint "university_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,30 +58,21 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
   end
 
   create_table "enrolls", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
+    t.bigint "user_id"
+    t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_enrolls_on_course_id"
     t.index ["user_id"], name: "index_enrolls_on_user_id"
   end
 
-  create_table "hides", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_hides_on_comment_id"
-    t.index ["user_id"], name: "index_hides_on_user_id"
-  end
-
   create_table "posts", force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "ptype_id"
+    t.bigint "course_id"
+    t.bigint "ptype_id"
     t.string "title"
     t.string "url"
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "flagged", default: false
@@ -94,8 +88,8 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
   end
 
   create_table "rewardpurchases", force: :cascade do |t|
-    t.integer "reward_id"
-    t.integer "user_id"
+    t.bigint "reward_id"
+    t.bigint "user_id"
     t.string "rewardname"
     t.string "rewardbusiness"
     t.integer "rewardcost"
@@ -146,7 +140,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "votes", force: :cascade do |t|
+  create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
     t.string "voter_type"
@@ -160,4 +154,13 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "comments", "users"
+  add_foreign_key "courses", "universities"
+  add_foreign_key "enrolls", "courses"
+  add_foreign_key "enrolls", "users"
+  add_foreign_key "posts", "courses"
+  add_foreign_key "posts", "ptypes"
+  add_foreign_key "posts", "users"
+  add_foreign_key "rewardpurchases", "rewards"
+  add_foreign_key "rewardpurchases", "users"
 end
