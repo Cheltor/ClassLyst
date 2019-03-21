@@ -75,22 +75,22 @@ class PostsController < ApplicationController
   def upvote
     @post = Post.find(params[:id])
     if @post.user == current_user
-      redirect_to :back, notice: "Can't vote on your own post"
+      redirect_to @post, notice: "Can't vote on your own post"
     else
       if current_user.voted_up_on? @post
-        redirect_to :back
+        redirect_to @post
       elsif current_user.voted_down_on? @post
         @post.upvote_by current_user
         @post.user.increase_karma
         @post.user.increase_karma
         @post.user.increase_reputation
         @post.user.increase_reputation
-        redirect_to :back      
+        redirect_to @post      
       else
         @post.upvote_by current_user
         @post.user.increase_karma
         @post.user.increase_reputation
-        redirect_to :back
+        redirect_to @post
       end
     end
   end
@@ -98,19 +98,19 @@ class PostsController < ApplicationController
   def downvote
     @post = Post.find(params[:id])
     if @post.user == current_user
-      redirect_to :back, notice: "Can't vote on your own post"
+      redirect_to @post, notice: "Can't vote on your own post"
     else
       if current_user.voted_down_on? @post
-        redirect_to :back
+        redirect_to @post
       elsif current_user.voted_up_on? @post
         @post.downvote_by current_user
         @post.user.decrease_karma
         @post.user.decrease_karma
-        redirect_to :back
+        redirect_to @post
       else
         @post.downvote_by current_user
         @post.user.decrease_karma
-        redirect_to :back
+        redirect_to @post
       end
     end
   end

@@ -6,8 +6,9 @@
 
 
 <body class="blog-post">
-  <div class="wrapper">
+  <div class="wrapper" style="padding-top:50px">
     <div class="page-header header-filter page-header-mini" filter-color="black">
+
         <div class="page-header-image" data-parallax="false" style="background-image: url('../images/blank-notebook-on-creative-workspace_925x.jpg');">
         </div>
         <div class="content-center">
@@ -21,7 +22,7 @@
         </div>
       </div>
       <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %> <br>
       <% end %>
       <div class="section">
         <div class="container">
