@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_001619) do
+ActiveRecord::Schema.define(version: 2019_03_24_182659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "hidden", default: false
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
+    t.index ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
+    t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
+    t.index ["cached_votes_up"], name: "index_comments_on_cached_votes_up"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -76,6 +84,14 @@ ActiveRecord::Schema.define(version: 2019_02_28_001619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "flagged", default: false
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.index ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
+    t.index ["cached_votes_score"], name: "index_posts_on_cached_votes_score"
+    t.index ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
+    t.index ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
     t.index ["course_id"], name: "index_posts_on_course_id"
     t.index ["ptype_id"], name: "index_posts_on_ptype_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
