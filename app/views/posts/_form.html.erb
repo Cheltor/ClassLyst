@@ -4,45 +4,68 @@
   </script>
 </head>
 
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="col-md-6 ml-auto mr-auto">
+  <div class="card card-contact card-raised">
+    <%= form_for(post) do |f| %>
+      <div class="card-body">
+        <% if post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      
+            <ul>
+            <% post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="">
+            <div class="field">
+            <%= f.label :course %><br />
+            <%= f.collection_select :course_id, Course.all, :id, :name_with_univ, class: "form-control" %>
+            </div>
+            <br>
+            <div class="">
+              <div class="field">
+                <label>Question or Resource?</label><br />
+                <%= f.collection_select :ptype_id, Ptype.all, :id, :name, class: "form-control" %>
+              </div>
+            </div>
+              <div class="form-group">
+                <div class="field">
+                  <br>
+                  <%= f.label :title %>
+                  <%= f.text_field :title, class:"form-control" %>
+                </div>
+              </div>
 
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+              <div class="form-group">
+                <div class="field">
+                  <%= f.label :url %> <label>(must include https://)</label>
+                  <%= f.text_field :url, class:"form-control", placeholder: 'Optional' %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= form.label :course %><br />
-    <%= form.collection_select :course_id, Course.all, :id, :name_with_univ, class: "form-control" %>
+              <div class="form-group">
+                <div class="field">
+                  <%= f.label :content %>
+                  <%= f.text_area :content, class:"form-control" %>
+                </div>
+              </div>
+
+        </div>
+
+        
+
+
+      
+
+        <div class="actions">
+          <%= f.button :Submit, class: "btn btn-primary btn-round pull-right" %> 
+        </div>
+      </div>
+    <% end %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :ptype %><br />
-    <%= form.collection_select :ptype_id, Ptype.all, :id, :name, class: "form-control" %>
-  </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
