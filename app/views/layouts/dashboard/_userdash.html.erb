@@ -1,11 +1,11 @@
 <div class="page-header header-filter page-header-mini" filter-color="black">
-  <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+  <div class="page-header-image" data-parallax="false" style="background-image: url('images/classic-car-dashboard.jpg');">
   </div>
   <div class="content-center">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto text-center">
         <h2 class="title">
-          <%= current_user.email.slice(0, current_user.email.index('@')).upcase %> Dashboard</h2>
+          <%= current_user.email.slice(0, current_user.email.index('@')).upcase %> <br> Reputation: <%= current_user.try(:reputation) %></h2>
       </div>
     </div>
   </div>
