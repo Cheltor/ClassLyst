@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
+    @comment.post = Post.find(params[:post_id])
     if @comment.save
       redirect_to @commentable
     else
