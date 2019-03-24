@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_182659) do
+ActiveRecord::Schema.define(version: 2019_03_24_190904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,11 +49,13 @@ ActiveRecord::Schema.define(version: 2019_03_24_182659) do
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
+    t.bigint "post_id"
     t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
     t.index ["cached_votes_up"], name: "index_comments_on_cached_votes_up"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -170,6 +172,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_182659) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "courses", "universities"
   add_foreign_key "enrolls", "courses"
