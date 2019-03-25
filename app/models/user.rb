@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   has_many :rewardpurchases
 
+  belongs_to :university, :required => true
+
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)
   end
