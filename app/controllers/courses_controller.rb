@@ -1,12 +1,13 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :admin_user, except: [:index, :show]
   
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @search = Course.ransack(params[:q])
+    @courses = @search.result(distinct: true).paginate(page: params[:page], per_page: 15)
   end
 
   # GET /courses/1

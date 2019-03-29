@@ -76,6 +76,9 @@ gem 'webpacker', '~> 3.5'
 # Pagination
 gem 'kaminari'
 
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+
 # Select2
 gem "select2-rails"
 
