@@ -69,6 +69,18 @@
     <% end %>
   <% end %>
   </div>
+  <div class="">
+   <div class="row">
+    <div class="col mr-auto ml-auto">
+      <div class="apple_pagination">
+        <div class="page_info">
+          <%= page_entries_info @posts %>
+        </div>
+        <%= will_paginate @posts, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
   <div class="about-contact">
     <div class="container">
       <div class="row">

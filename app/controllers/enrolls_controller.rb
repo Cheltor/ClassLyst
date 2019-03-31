@@ -5,7 +5,7 @@ class EnrollsController < ApplicationController
     @enroll = Enroll.find(params[:id])
     @enroll.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Enroll was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Enroll was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

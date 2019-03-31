@@ -213,7 +213,7 @@
                       </thead>
 
                       <tbody>
-                        <% enroll.course.posts.where.not(id: Flag.select(:post_id)).order("created_at DESC").paginate(page: params[:page], per_page: 11).each do |post| %>
+                        <% enroll.course.posts.where(flagged: false).order("created_at DESC").paginate(page: params[:page], per_page: 11).each do |post| %>
                           <tr>
                             <td style="text-align:center">
                               <%= post.weighted_score %>

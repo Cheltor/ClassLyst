@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-     @comments = @post.comments.where(parent_id: nil).order("cached_votes_up DESC").page(params[:page]).per(5)
+     @comments = @post.comments.where(parent_id: nil).order("cached_votes_up DESC").paginate(page: params[:page], per_page: 5)
   end
 
   # GET /posts/new

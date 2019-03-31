@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :admin_user, except: [:index, :show]
+  before_action :admin_user, except: [:index, :show, :enroll]
   
   # GET /courses
   # GET /courses.json
@@ -13,7 +13,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @posts = Post.all.where(course_id: @course.id).where(flagged: false)
+    @search = Post.ransack(params[:q])
+    @posts = @search.result(distinct: true).includes(:comments).where(course_id: @course.id).where(flagged: false).order("created_at DESC").paginate(page: params[:page], per_page: 15)
 
      if user_signed_in?
       @enrolls = Enroll.all.where(user_id: current_user.id).where(course_id: @course.id)
