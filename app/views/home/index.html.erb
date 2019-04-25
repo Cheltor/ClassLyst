@@ -4,7 +4,7 @@
 <%= render "layouts/footer/footer" %>
 <% elsif business_signed_in? %>
 <% @title= current_business.name %>
-<%= render "static/bizdash" %>
+<%= render "layouts/dashboard/bizdash" %>
 <%= render "layouts/footer/footer" %>
 <% else %>
 

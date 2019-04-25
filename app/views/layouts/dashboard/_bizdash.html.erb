@@ -1,1 +1,124 @@
-bizdash.html.erb
+<div class="page-header header-filter page-header-mini" filter-color="black">
+  <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+  </div>
+  <div class="content-center">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">
+          <%= current_business.name %> Dashboard</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+<% end %>
+
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+      <h4 style="text-align:center">Our Info</h4>
+        <div class="card">
+          <div class="card-content">
+            <div class="container">
+              <h4>Reward Code: <%= current_business.code %></h4>
+            <h4>Name: <%= current_business.name %></h4>
+            <h4>Website: 
+            <% if current_business.website.empty? %>
+            <%= link_to 'Add a Website', edit_business_registration_path, class:"nav-link" %>
+            <% else %>
+                <% if current_business.website.start_with?('http') %>
+                <%= link_to current_business.website, current_business.website, :target => "_blank" %>
+                <% else %>
+                <%= link_to current_business.website, "http://" + current_business.website, :target => "_blank" %>
+                <% end %>
+            <% end %></h4>
+            <h4>Facebook:
+              <% if current_business.facebook.empty? %>
+                  <%= link_to 'Add a Facebook', edit_business_registration_path, class:"nav-link" %>
+                  <% else %>
+                  <% if current_business.facebook.start_with?('@') %>
+                  <%= link_to 'Facebook', "https://www.facebook.com/" + current_business.facebook.sub('@', ''), :target => "_blank", class:""%>
+                  <% elsif current_business.facebook.start_with?('http') %>
+                  <%= link_to 'Facebook', current_business.facebook, :target => "_blank", class:""%>
+                  <% else %>
+                  <%= link_to current_business.facebook, "https://www.facebook.com/" + current_business.facebook, :target => "_blank", class:""%>
+                  <% end %>
+              <% end %>
+              </h4>
+              <h4>Twitter:
+                <% if current_business.twitter.empty? %>
+                  <%= link_to 'Add a Twitter', edit_business_registration_path, class:"nav-link" %>
+                    <% else %>
+                    <% if current_business.twitter.start_with?('@') %>
+                    <%= link_to current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
+                    <% elsif current_business.twitter.start_with?('http') %>
+                    <%= link_to current_business.twitter, current_business.twitter, :target => "_blank", class:""%>
+                    <% else %>
+                    <%= link_to current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
+                    <% end %>
+                <% end %>
+              </h4>
+            </div> 
+            </div>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'Change Details', edit_business_registration_path, class:"btn btn-simple btn-primary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-8">
+        <div class="table-responsive">
+          <div class="container-fluid">
+            <h4 style="text-align:center">Our Rewards</h4>
+            <div class="card">
+              <div class="card-content">
+              <% if @rewards.blank? %>
+              <br>
+              <h5 style="text-align:center">You have not created any rewards yet</h5>
+            <% else %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Description</th>
+                    <th>Time created</th>
+                    <th>Reward purchases</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @myrewards.each do |reward| %>
+                    <tr style="text-align:center">
+                      <td><strong><%= link_to reward.name, reward %></strong></td>
+                      <td><%= reward.cost %></td>
+                      <td><%= reward.description %></td>
+                      <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
+                      <td><%= reward.rewardpurchases.count %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% end %>
+              </div>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                  <%= link_to 'New Reward', new_reward_path, class:"btn btn-simple btn-primary" %>
+                </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
