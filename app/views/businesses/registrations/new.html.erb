@@ -13,67 +13,98 @@
                         <h2>Sign Up</h2>
                       <div class="card card-signup">
                           <div class="card-body">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  
-  <%= hidden_field_tag 'plan', params[:plan] %>
+                            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                              <%= devise_error_messages! %>
+                              
+                              <%= hidden_field_tag 'plan', params[:plan] %>
 
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        <i class="material-icons">
-        email
-        </i>
-      </span>
-    </div>
-    <%= f.email_field :email, autofocus: "off", class: 'form-control', placeholder:"School Email", autocomplete:"email" %>
-  </div>
-  
-  
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        <i class="material-icons">
-        lock
-        </i>
-      </span>
-    </div>
-    <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder:"Password (6 characters minimum)" %>
-  </div>
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        <i class="material-icons">
-        lock
-        </i>
-      </span>
-    </div>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder:"Confirm Password" %>
-  </div>
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        <i class="material-icons">
-        store
-        </i>
-      </span>
-    </div>
-    <%= f.text_field :name, class: 'form-control', placeholder:"Business Name" %>
-  </div>
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        <i class="material-icons">
-        lock_open
-        </i>
-      </span>
-    </div>
-    <%= f.text_field :code, class: 'form-control', placeholder:"Reward Code (1234)" %>
-  </div>
-  <div class="actions form-group">
-    <%= f.submit "Sign up", class: 'btn btn-primary btn-round btn-lg', id: 'form-submit-btn' %>
-  </div>
-<% end %>
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="material-icons">
+                                    email
+                                    </i>
+                                  </span>
+                                </div>
+                                <%= f.email_field :email, autofocus: "off", class: 'form-control', placeholder:"School Email", autocomplete:"email" %>
+                              </div>
+                              
+                              
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="material-icons">
+                                    lock
+                                    </i>
+                                  </span>
+                                </div>
+                                <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder:"Password (6 characters minimum)" %>
+                              </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="material-icons">
+                                    lock
+                                    </i>
+                                  </span>
+                                </div>
+                                <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder:"Confirm Password" %>
+                              </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="material-icons">
+                                    store
+                                    </i>
+                                  </span>
+                                </div>
+                                <%= f.text_field :name, class: 'form-control', placeholder:"Business Name" %>
+                              </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="material-icons">
+                                    web
+                                    </i>
+                                  </span>
+                                </div>
+                                <%= f.text_field :website, class: 'form-control', placeholder:"Website" %>
+                              </div>
+
+                               <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                  <i class="fa fa-twitter"></i>
+                                  </span>
+                                </div>
+                                <%= f.text_field :twitter, class: 'form-control', placeholder:"Twitter" %>
+                              </div>
+
+                               <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="fa fa-facebook"></i>
+                                  </span>
+                                </div>
+                                <%= f.text_field :facebook, class: 'form-control', placeholder:"Facebook" %>
+                              </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="fa fa-instagram"></i>
+                                  </span>
+                                </div>
+                                <%= f.text_field :instagram, class: 'form-control', placeholder:"Instagram" %>
+                              </div>
+
+                              <div class="actions form-group">
+                                <%= f.submit "Sign up", class: 'btn btn-primary btn-round btn-lg', id: 'form-submit-btn' %>
+                              </div>
+                            <% end %>
                             <%= render "businesses/shared/links" %>
                           </div>
                       </div>

@@ -35,6 +35,12 @@
     <% end %>
     
     <%= yield %>
+    <% if user_signed_in? %>
+    <%= render "layouts/footer/user_footer" %>
+    <% elsif business_signed_in? %>
+    <%= render "layouts/footer/business_footer" %>
+    <% else %>
     <%= render "layouts/footer/footer" %>
+    <% end %>
   </body>
 </html>

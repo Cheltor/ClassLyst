@@ -31,6 +31,41 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
         <br>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-briefcase"></i>
+              </span>
+            </div>
+            <%= f.text_field :name, class: 'form-control', placeholder:"Business Name" %>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-lock"></i>
+              </span>
+            </div>
+            <%= f.text_field :website, class: 'form-control', placeholder:"Website" %>
+          </div>
+          
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+              <i class="fa fa-twitter"></i>
+              </span>
+            </div>
+            <%= f.text_field :twitter, class: 'form-control', placeholder:"Twitter" %>
+          </div>
+          
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-facebook"></i>
+              </span>
+            </div>
+            <%= f.text_field :facebook, class: 'form-control', placeholder:"Facebook" %>
+          </div>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
@@ -54,7 +89,7 @@
         </div>
         <br>
         <div class="actions">
-          <%= f.submit "Update my password", class: "btn btn-primary btn-round" %>
+          <%= f.submit "Update my account", class: "btn btn-primary btn-round" %>
         </div>
       <% end %>
 

@@ -3,6 +3,12 @@ class RewardsController < ApplicationController
   before_action :authenticate_business!, :except => [:index, :show, :rewardpurchase]
   before_action :authorized_business, only: [:edit, :update]
 
+  # GET /rewards/myrewards
+  # GET /rewards/myrewards.json
+  def myrewards
+    @rewards = Reward.all.where(business: current_business)
+  end
+
   # GET /rewards
   # GET /rewards.json
   def index
