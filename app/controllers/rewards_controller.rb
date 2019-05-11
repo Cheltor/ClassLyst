@@ -81,6 +81,8 @@ class RewardsController < ApplicationController
 
        respond_to do |format|
         if @rewardpurchase.save
+          current_user.decrease_karma
+          RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase).user_reward_email.deliver_now
           format.html { redirect_to @reward, notice: 'Purchase was successfully created.' }
           format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }
         else

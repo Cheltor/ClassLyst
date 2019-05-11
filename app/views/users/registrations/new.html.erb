@@ -8,6 +8,10 @@
       <div class="content">
           <div class="container">
               <div class="row">
+                                  <% flash.each do |name, msg| %>
+                  <br>
+              <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %>
+              <% end %>
                   <div class="col-md-4 ml-auto mr-auto">
                       <div class="info info-horizontal">
                           <div class="icon icon-primary">
