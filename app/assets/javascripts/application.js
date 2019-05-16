@@ -26,3 +26,4 @@
 //= require nowui/now-ui-kit
 //= require select2
 //= require_tree .
+//= require pwa/serviceworker-companion
