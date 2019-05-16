@@ -87,3 +87,6 @@ gem 'acts_as_votable', '~> 0.11.1'
 
 # Search 
 gem 'ransack'
+
+# Use Service Worker with the Rails asset pipeline
+gem 'serviceworker-rails'
