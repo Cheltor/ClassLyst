@@ -6,8 +6,8 @@ class HomeController < ApplicationController
       @myposts = Post.all.where(user: current_user).order("created_at DESC")
       @comments = Comment.all
       @mycomments = Comment.all.where(user: current_user).order("created_at DESC")
-      #@rewards = Reward.all
-      #@myrewards = Reward.all.where(user: current_user)
+      @rewards = Reward.all
+      @myrewards = Reward.all.where(user: current_user)
     elsif business_signed_in?
       @rewards = Reward.all
       @myrewards = Reward.all.where(business: current_business)

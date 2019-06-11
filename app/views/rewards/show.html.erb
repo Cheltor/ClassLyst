@@ -1,21 +1,52 @@
-<p id="notice"><%= notice %></p>
+<% @title= truncate(@reward.name, :length => 35) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @reward.name %>
-</p>
 
-<p>
-  <strong>Cost:</strong>
-  <%= @reward.cost %>
-</p>
+<body class="blog-post">
+  <div class="wrapper" style="padding-top:50px">
+    <div class="page-header header-filter page-header-mini" filter-color="black">
 
-<p>
-  <strong>Description:</strong>
-  <%= @reward.description %>
-</p>
+        <div class="page-header-image" data-parallax="false" style="background-image: url('../images/gift-wrapped-with-bow.jpg');">
+        </div>
+        <div class="content-center">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+              <h2 class="title"><%= truncate(@reward.name, :length => 36) %></h2>
+              <h4>By: <%= @reward.business.name %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %> <br>
+      <% end %>
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="container">
+                    <h3 class="title"><%= @reward.name %></h3>
+                    <h4>Cost: <%= @reward.cost %></h4>
+                    <p><%= simple_format @reward.description %></p>
+	                    <div style="text-align:center">
+	                    	<% if user_signed_in? %>
+	                   			 <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
+	                   		<% end %>
+	                    <% if current_business == @reward.business %>
+							<%= link_to 'Edit', edit_reward_path(@reward) %>
+						<% end %>
+						</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
 
-<%= link_to 'Edit', edit_reward_path(@reward) %> |
-<%= link_to 'Back', rewards_path %>
 
-<%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
+

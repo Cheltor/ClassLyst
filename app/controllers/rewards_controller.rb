@@ -2,6 +2,7 @@ class RewardsController < ApplicationController
   before_action :set_reward, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_business!, :except => [:index, :show, :rewardpurchase]
   before_action :authorized_business, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:rewardpurchase]
 
   # GET /rewards/myrewards
   # GET /rewards/myrewards.json
@@ -83,7 +84,7 @@ class RewardsController < ApplicationController
         if @rewardpurchase.save
           current_user.decrease_karma
           RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase).user_reward_email.deliver_now
-          format.html { redirect_to @reward, notice: 'Purchase was successfully created.' }
+          format.html { redirect_to @reward, notice: 'Reward was successfully purchased!' }
           format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }
         else
           format.html { redirect_to @reward}

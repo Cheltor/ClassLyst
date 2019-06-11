@@ -1,31 +1,64 @@
-<p id="notice"><%= notice %></p>
+<% @title="| Rewards" %>
 
-<h1>Rewards</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Cost</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rewards.each do |reward| %>
-      <tr>
-        <td><%= reward.name %></td>
-        <td><%= reward.cost %></td>
-        <td><%= reward.description %></td>
-        <td><%= link_to 'Show', reward %></td>
-        <td><%= link_to 'Edit', edit_reward_path(reward) %></td>
-        <td><%= link_to 'Destroy', reward, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Reward', new_reward_path %>
+<div class="contatiner" style="padding-top:30px">
+    <div class="page-header page-header-mini">
+      <div class="page-header-image" data-parallax="false" style="background-image: url(../images/blue-ribbon-on-gift.jpg); transform: translate3d(0px, 0px, 0px);">
+      </div>
+      <div class="content-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <% flash.each do |name, msg| %>
+              <%= content_tag(:div, msg, class: "alert alert-info") %>
+            <% end %>
+            <h1 class="title">Rewards</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% if @rewards.blank? %>
+  <% else %>
+  <br>
+  <div class="container-fluid">
+  <div class="card">
+    <div class="card-content" style="text-align:center">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <tr>
+                      <th>Name</th>
+                      <th>Cost</th>
+                      <th>Description</th>
+                      <th colspan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @rewards.each do |reward| %>
+                    <tr>
+                      <td><strong><%= link_to reward.name, reward %></strong></td>
+                      <td><%= reward.cost %> Points</td>
+                      <td><%= reward.description %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  </div>
+  <% end %>
+  <!-- maybe something should go here in the future 
+  <div class="about-contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mr-auto ml-auto">
+          <h2 class="text-center title">Couldn't find what you're looking for?</h2>
+          <h4 class="text-center description">Submit a post with your question and see if anyone else has found it.</h4>
+          <div style="text-align:center">
+          <%= link_to 'New Post', new_post_path, class:"btn btn-primary btn-round mt-4 btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+         -->
+</div>
