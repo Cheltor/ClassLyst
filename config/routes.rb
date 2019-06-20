@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profsignup' => 'home#profsignup'
+  get 'businessinfo' => 'home#businessinfo'
   get 'rewardpurchases/myrewards'
   resources :rewards do
     member do

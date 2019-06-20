@@ -142,15 +142,17 @@
                               <th>Name</th>
                               <th>Cost</th>
                               <th>Description</th>
+                              <th>Redeem</th>
                           </tr>
                         </thead>
                         <tbody>
                           <% @myrewards.each do |reward| %>
                             <tr>
                               <td><%= reward.rewardbusiness %></td>
-                              <td><strong><%= link_to reward.rewardname, reward %></strong></td>
+                              <td><strong><%=  reward.rewardname %></strong></td>
                               <td><%= reward.rewardcost %> Points</td>
                               <td><%= truncate(reward.rewarddescription, :length => 50) %></td>
+                              <td><%= link_to 'Redeem',posts_path, class:"btn btn-primary" %></td>
                             </tr>
                           <% end %>
                         </tbody>
