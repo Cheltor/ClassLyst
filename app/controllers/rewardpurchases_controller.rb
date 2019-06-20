@@ -1,7 +1,7 @@
 class RewardpurchasesController < ApplicationController
   # POST /redeems
   # POST /redeems.json
-  def redeem	  def redeem
+  def redeem
     @rewardpurchase = Rewardpurchase.find(params[:id])
     @redeem = @rewardpurchase.redeems.create(params.permit(:rewardpurchase_id,:user_id))
     @redeem.user_id = current_user.id
@@ -21,9 +21,9 @@ class RewardpurchasesController < ApplicationController
   def valid
   end
 
-   def show
+  def show
     @rewardpurchase = Rewardpurchase.find(params[:id])
-  end	  end
+  end
 
 	def myrewards
   	  @rewardpurchase = Rewardpurchase.all.where(user_id: current_user.id).where.not(id: Redeem.select(:rewardpurchase_id))
