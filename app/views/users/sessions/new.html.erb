@@ -1,23 +1,35 @@
-<% @title="Student Sign In" %>
-
-
-
-  <div class="page-header header-filter" filter-color="black">
-      <div class="page-header-image" style="background-image: url('../images/tech-meeting-flatlay.jpg');"></div>
-      tech-meeting-flatlay.jpg
-          <div class="content">
-              <div class="container">
-
-                  <% flash.each do |name, msg| %>
-                  <br>
-              <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %>
-              <% end %>
-                  <div class="col-md-5 ml-auto mr-auto">
-                    <h2 class="title">Student Sign In</h2>
-            <div class="card card-signup">
-                          <div class="card-body">
-  
-                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<% @title="Student Sign In" %> 
+  <div class="pricing-3 section-image page-header header-filter" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto text-center">
+            <h2 class="title">Spend more time doing things you like</h2>
+            <h5 class="description">Spend less time searching for information that has already been found.</h5>
+          </div>
+        </div>
+        <div class="space-top"></div>
+        <div class="row">
+          <div class="col-md-3 ml-auto mr-auto">
+            <div class="card card-pricing">
+              <div class="card-body">
+                <h6 class="card-category" style="color:black">First time?</h6>
+                <div class="card-icon">
+                  <i class="nc-icon nc-user-run"></i>
+                </div>
+                <p class="card-description">
+                    Earn rewards and follow the posts in your classes after signing up!</p>
+                <div class="card-footer">
+                  <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-primary btn-lg" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mr-auto">
+            <div class="card card-pricing" data-background="color" data-color="blue">
+              <div class="card-body">
+                <h6 class="card-category" style="color:black">Student Sign In</h6>
+                
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                   <br>
                                   <div class="form-group">
                         <%= f.email_field :email, autofocus: true, :class => "form-control", placeholder: "School Email" %>
@@ -44,18 +56,24 @@
                                     <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br><br>
                 <% end %>
               </div>
-                      </div>
-                      <h2 class="title">First time?</h2>
-
-            <div class="card card-signup">
-                          <div class="card-body">
-                            <br>
-                      <p style="color:black">Earn rewards and follow the posts in your classes after signing up!</p>
-                          <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-primary btn-lg" %>
-                          </div>
-                        </div>
-                  </div>
-              </div>
+            </div>
           </div>
-  
-</div>  
+          <div class="col-md-3 mr-auto">
+            <div class="card card-pricing">
+              <div class="card-body">
+                <h6 class="card-category" style="color:black">I'm a professor/faculty</h6>
+                <div class="card-icon">
+                  <i class="nc-icon nc-istanbul"></i>
+                </div>
+                <p class="card-description">
+                  Professors can receive administrator privileges for the classes they teach.
+                </p>
+                <div class="card-footer">
+                  <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-primary btn-lg" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
