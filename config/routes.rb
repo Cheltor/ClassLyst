@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'profsignup' => 'home#profsignup'
   get 'businessinfo' => 'home#businessinfo'
   get 'rewardpurchases/myrewards'
+  get 'rewardpurchases/redeem'
+
   resources :rewards do
     member do
       post 'rewardpurchase'

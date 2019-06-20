@@ -1,5 +1,17 @@
-<div class="container" style="text-align:center; padding-top:20px; padding-bottom:20px">
-  <h1>My Rewards</h1>
+<div class="page-header header-filter page-header-mini" filter-color="black">
+    <div class="page-header-image" data-parallax="false" style="background-image: url('../images/man-writing.jpg');">
+    </div>
+    <div class="content-center">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <% flash.each do |name, msg| %>
+            <%= content_tag(:div, msg, class: "alert alert-info") %>
+          <% end %>
+          <h2 class="title">My Rewards</h2>
+        </div>
+      </div>
+    </div>
+
 </div>
 
  <div class="table-responsive">
@@ -7,12 +19,14 @@
     <thead>
       <tr>
         <th style="text-align: center">Name</th>
+        <th style="text-align: center">Name</th>
       </tr>
     </thead>
     <tbody>
       <% @rewardpurchases.each do |rewardpurchases| %>
         <tr>
           <td style="text-align: center"><%= rewardpurchases.rewardname %></td>
+          <td style="text-align: center"></td>
         </tr>
       <% end %>
     </tbody>

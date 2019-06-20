@@ -65,7 +65,7 @@ class RewardsController < ApplicationController
   def destroy
     @reward.destroy
     respond_to do |format|
-      format.html { redirect_to rewards_url, notice: 'Reward was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Reward was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
