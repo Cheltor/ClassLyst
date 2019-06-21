@@ -22,4 +22,8 @@ class HomeController < ApplicationController
 
   def profsignup
   end
+
+  def userpage
+    @users = User.all
+  end
 end

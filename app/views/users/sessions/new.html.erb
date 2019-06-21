@@ -2,14 +2,19 @@
   <div class="pricing-3 section-image page-header header-filter" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
       <div class="container">
         <div class="row">
+
           <div class="col-md-6 ml-auto mr-auto text-center">
+          <% flash.each do |name, msg| %> 
+           <br>  
+            <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %> 
+          <% end %> 
             <h2 class="title">Spend more time doing things you like</h2>
             <h5 class="description">Spend less time searching for information that has already been found.</h5>
           </div>
         </div>
         <div class="space-top"></div>
         <div class="row">
-          <div class="col-md-3 ml-auto mr-auto">
+          <div class="col-lg-3 ml-auto mr-auto">
             <div class="card card-pricing">
               <div class="card-body">
                 <h6 class="card-category" style="color:black">First time?</h6>
@@ -24,7 +29,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 mr-auto">
+          <div class="col-lg-4 mr-auto">
             <div class="card card-pricing" data-background="color" data-color="blue">
               <div class="card-body">
                 <h6 class="card-category" style="color:black">Student Sign In</h6>
@@ -58,7 +63,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 mr-auto">
+          <div class="col-lg-3 mr-auto desktop-only">
             <div class="card card-pricing">
               <div class="card-body">
                 <h6 class="card-category" style="color:black">I'm a professor/faculty</h6>

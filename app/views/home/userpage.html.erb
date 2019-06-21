@@ -1,0 +1,42 @@
+<div class="page-header header-filter page-header-mini" filter-color="black">
+    <div class="page-header-image" data-parallax="false" style="background-image: url('../images/man-writing.jpg');">
+    </div>
+    <div class="content-center">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <% flash.each do |name, msg| %>
+            <%= content_tag(:div, msg, class: "alert alert-info") %>
+          <% end %>
+          <h2 class="title">User List</h2>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+ <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="text-align: center">ID</th>
+        <th style="text-align: center">Email</th>
+        <th style="text-align: center">Last Sign In</th>
+        <th style="text-align: center">Points</th>
+        <th style="text-align: center">Reputation</th>
+        <th style="text-align: center">University </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |users| %>
+        <tr>
+          <td style="text-align: center"><%= users.id %></td>
+          <td style="text-align: center"><%= users.email %></td>
+          <td style="text-align: center"><%= users.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)") %></td>
+          <td style="text-align: center"><%= users.karma %></td>
+          <td style="text-align: center"><%= users.reputation %></td>
+          <td style="text-align: center"><%= users.university.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

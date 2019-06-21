@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'businessinfo' => 'home#businessinfo'
   get 'rewardpurchases/myrewards'
   get 'rewardpurchases/redeem'
-
+  get 'home/userpage'
   resources :rewards do
     member do
       post 'rewardpurchase'
