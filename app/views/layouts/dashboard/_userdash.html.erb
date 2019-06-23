@@ -138,21 +138,19 @@
                     <table class="table">
                         <thead class="text-primary">
                             <tr>
-                              <th>Business</th>
-                              <th>Name</th>
-                              <th>Cost</th>
-                              <th>Description</th>
-                              <th>Redeem</th>
+                              <th style="text-align:center">Business</th>
+                              <th style="text-align:center">Name</th>
+                              <th style="text-align:center">Cost</th>
+                              <th style="text-align:center">Redeem</th>
                           </tr>
                         </thead>
                         <tbody>
                           <% @myrewards.each do |reward| %>
                             <tr>
-                              <td><%= reward.rewardbusiness %></td>
-                              <td><strong><%=  reward.rewardname %></strong></td>
-                              <td><%= reward.rewardcost %> Points</td>
-                              <td><%= truncate(reward.rewarddescription, :length => 50) %></td>
-                              <td><%= link_to 'Redeem',posts_path, class:"btn btn-primary" %></td>
+                              <td style="text-align:center"><%= reward.rewardbusiness %></td>
+                              <td style="text-align:center"><strong><%=  reward.rewardname %></strong></td>
+                              <td style="text-align:center"><%= pluralize(reward.try(:rewardcost), 'Point')%></td>
+                              <td style="text-align:center"><%= link_to reward.rewardname, reward, class:"btn btn-primary" %></td>
                             </tr>
                           <% end %>
                         </tbody>

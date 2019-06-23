@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :courses, :through => :enrolls
 
   has_many :rewardpurchases
+  has_many :redeems
 
   belongs_to :university, :required => true
 
@@ -32,5 +33,9 @@ class User < ApplicationRecord
 
   def decrease_reputation(count=1)
   	update_attribute(:reputation, reputation - count)
+  end
+
+  def purchase_reward(value) 
+    update_attribute(:karma, karma - value)
   end
 end

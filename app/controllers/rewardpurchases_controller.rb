@@ -1,4 +1,6 @@
 class RewardpurchasesController < ApplicationController
+  before_action :authenticate_user!
+
   # POST /redeems
   # POST /redeems.json
   def redeem
@@ -12,13 +14,16 @@ class RewardpurchasesController < ApplicationController
           format.html { redirect_to valid_url, notice: 'redeem was successfully created.' }
           format.json { render json: @redeem, status: :created, location: @redeem }
         else
-          format.html { redirect_to @rewardpurchase}
+          format.html { redirect_to notvalid_url}
           format.json { render json: @redeem.errors, status: :unprocessable_entity }
         end
       end
   end
 
   def valid
+  end
+
+  def notvalid
   end
 
   def show

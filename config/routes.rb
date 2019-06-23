@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   get 'profsignup' => 'home#profsignup'
   get 'businessinfo' => 'home#businessinfo'
   get 'rewardpurchases/myrewards'
-  get 'rewardpurchases/redeem'
+  resources :rewardpurchases do
+    member do
+      post 'redeem'
+    end
+  end
+  get 'valid' => 'home#valid'
+  get 'notvalid' => 'home#notvalid'
   get 'home/userpage'
   resources :rewards do
     member do

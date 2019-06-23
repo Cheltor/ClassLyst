@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       @comments = Comment.all
       @mycomments = Comment.all.where(user: current_user).order("created_at DESC")
       @rewards = Rewardpurchase.all
-      @myrewards = Rewardpurchase.all.where(user: current_user)
+      @myrewards = Rewardpurchase.all.where(user: current_user).where.not(id: Redeem.select(:rewardpurchase_id))
     elsif business_signed_in?
       @rewards = Reward.all
       @myrewards = Reward.all.where(business: current_business)

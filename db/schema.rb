@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_004550) do
+ActiveRecord::Schema.define(version: 2019_06_23_004548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,15 @@ ActiveRecord::Schema.define(version: 2019_06_11_004550) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "redeems", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "rewardpurchase_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rewardpurchase_id"], name: "index_redeems_on_rewardpurchase_id"
+    t.index ["user_id"], name: "index_redeems_on_user_id"
+  end
+
   create_table "rewardpurchases", force: :cascade do |t|
     t.bigint "reward_id"
     t.bigint "user_id"
@@ -189,6 +198,8 @@ ActiveRecord::Schema.define(version: 2019_06_11_004550) do
   add_foreign_key "posts", "courses"
   add_foreign_key "posts", "ptypes"
   add_foreign_key "posts", "users"
+  add_foreign_key "redeems", "rewardpurchases"
+  add_foreign_key "redeems", "users"
   add_foreign_key "rewardpurchases", "rewards"
   add_foreign_key "rewardpurchases", "users"
   add_foreign_key "rewards", "users"
