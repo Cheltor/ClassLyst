@@ -39,7 +39,9 @@ resources :contacts, only: [:new, :create]
   resources :enrolls
   resources :universities
   devise_for :businesses
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   root 'home#index'
   get 'ourrewards' => 'rewards#myrewards'
 
