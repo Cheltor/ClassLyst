@@ -84,22 +84,22 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Cost</th>
-                    <th>Description</th>
-                    <th>Time created</th>
-                    <th>Reward purchases</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Cost</th>
+                    <th style="text-align:center">Description</th>
+                    <th style="text-align:center">Time created</th>
+                    <th style="text-align:center">Reward purchases</th>
                   </tr>
                 </thead>
 
                 <tbody>
                   <% @myrewards.each do |reward| %>
                     <tr style="text-align:center">
-                      <td><strong><%= link_to reward.name, reward %></strong></td>
-                      <td><%= reward.cost %></td>
-                      <td><%= reward.description %></td>
-                      <td><%= time_ago_in_words(reward.created_at) + " ago" %></td>
-                      <td><%= reward.rewardpurchases.count %></td>
+                      <td style="text-align:center"><strong><%= link_to reward.name, reward %></strong></td>
+                      <td style="text-align:center"><%= reward.cost %></td>
+                      <td style="text-align:center"><%= reward.description %></td>
+                      <td style="text-align:center"><%= time_ago_in_words(reward.created_at) + " ago" %></td>
+                      <td style="text-align:center"><%= reward.rewardpurchases.count %></td>
                     </tr>
                   <% end %>
                 </tbody>

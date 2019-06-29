@@ -20,6 +20,13 @@ class User < ApplicationRecord
 
   belongs_to :university, :required => true
 
+  def save_with_email
+    if valid?
+      AdminMailer.with(user: current_user).admin_email.deliver_now
+      save!
+    end
+  end
+
   def increase_karma(count=1)
     update_attribute(:karma, karma + count)
   end

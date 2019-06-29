@@ -10,19 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super do |resource|
-      if params[:plan]
-        resource.plan_id = params[:plan]
-        if resource.plan_id == 1
-          AdminMailer.with(user: current_user).admin_email.deliver_now
-          resource.save
-        else
-          resource.save
-        end
-      end
-    end
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
