@@ -28,6 +28,7 @@
                     <div class="container">
                     <h3 class="title"><%= @reward.name %></h3>
                     <h4>Cost: <%= @reward.cost %></h4>
+                    <h5>Expiration Date: <%= @reward.expdate %></h5>
                     <p><%= simple_format @reward.description %></p>
 	                    <div style="text-align:center">
 	                    	<% if user_signed_in? %>

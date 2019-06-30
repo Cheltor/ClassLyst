@@ -102,6 +102,7 @@ class RewardsController < ApplicationController
     @rewardpurchase.rewardname = @reward.name.dup
     @rewardpurchase.rewardbusiness = @reward.business.name.dup
     @rewardpurchase.rewardcost = @reward.cost.to_s.dup
+    @rewardpurchase.rewardexp = @reward.expdate.dup
     @rewardpurchase.user_id = current_user.id
 
        respond_to do |format|
@@ -131,6 +132,6 @@ class RewardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_params
-      params.require(:reward).permit(:name, :cost, :description)
+      params.require(:reward).permit(:name, :cost, :description, :expdate)
     end
 end

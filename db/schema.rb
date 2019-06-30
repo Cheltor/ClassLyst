@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_26_230919) do
+ActiveRecord::Schema.define(version: 2019_06_29_172612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_230919) do
     t.string "rewarddescription"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "rewardexp"
     t.index ["reward_id"], name: "index_rewardpurchases_on_reward_id"
     t.index ["user_id"], name: "index_rewardpurchases_on_user_id"
   end
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(version: 2019_06_26_230919) do
     t.datetime "updated_at", null: false
     t.integer "business_id"
     t.bigint "user_id"
+    t.date "expdate"
     t.index ["business_id"], name: "index_rewards_on_business_id"
     t.index ["user_id"], name: "index_rewards_on_user_id"
   end

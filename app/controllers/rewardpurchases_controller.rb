@@ -11,7 +11,7 @@ class RewardpurchasesController < ApplicationController
 
        respond_to do |format|
         if @redeem.save
-          format.html { redirect_to valid_url, notice: 'redeem was successfully created.' }
+          format.html { redirect_to valid_url, notice: 'Reward was successfully redeemed.' }
           format.json { render json: @redeem, status: :created, location: @redeem }
         else
           format.html { redirect_to notvalid_url}
@@ -31,6 +31,6 @@ class RewardpurchasesController < ApplicationController
   end
 
 	def myrewards
-  	  @rewardpurchase = Rewardpurchase.all.where(user_id: current_user.id).where.not(id: Redeem.select(:rewardpurchase_id))
+  	@rewardpurchase = Rewardpurchase.all.where(user_id: current_user.id).where.not(id: Redeem.select(:rewardpurchase_id))
 	end
 end
