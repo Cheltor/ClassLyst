@@ -15,6 +15,7 @@ resources :contacts, only: [:new, :create]
   resources :rewards do
     member do
       post 'rewardpurchase'
+      patch :bye
     end
   end
   resources :posts do

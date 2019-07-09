@@ -16,6 +16,10 @@
       </div>
     </div>
   <% if @rewards.blank? %>
+  <br>
+  <br>
+  <h1 style="text-align:center">There aren't any rewards right now.</h1>
+  <p><%= Time.zone.name %></p>
   <% else %>
   <br>
   <div class="container-fluid">
@@ -27,6 +31,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Cost</th>
+                      <th>Expires</th>
                       <th>Description</th>
                       <th colspan="2"></th>
                   </tr>
@@ -35,7 +40,8 @@
                   <% @rewards.each do |reward| %>
                     <tr>
                       <td><strong><%= link_to reward.name, reward %></strong></td>
-                      <td><%= reward.cost %> Points</td>
+                      <td><%= pluralize(reward.try(:cost), 'Point') %></td>
+                      <td><%= reward.expdate.strftime("%m/%d/%Y") %></td>
                       <td><%= reward.description %></td>
                     </tr>
                   <% end %>
