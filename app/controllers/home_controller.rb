@@ -21,7 +21,7 @@ class HomeController < ApplicationController
   end
 
   def profsignup
-    @admin = Plan.find(1)
+    # @admin = Plan.find(1)
   end
 
   def userpage
