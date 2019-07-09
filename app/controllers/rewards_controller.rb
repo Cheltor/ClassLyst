@@ -1,5 +1,5 @@
 class RewardsController < ApplicationController
-  before_action :set_reward, only: [:show, :edit, :update, :destroy]
+  before_action :set_reward, only: [:show, :edit, :update, :destroy, :bye]
   before_action :authenticate_business!, :except => [:index, :show, :rewardpurchase]
   before_action :authorized_business, only: [:edit, :update]
   before_action :authenticate_user!, only: [:rewardpurchase]
@@ -24,6 +24,11 @@ class RewardsController < ApplicationController
    def valid
   end
 
+  def bye
+    @reward.bye
+    redirect_to @reward
+  end
+
    def show
     @rewardpurchase = Rewardpurchase.find(params[:id])
   end
@@ -31,13 +36,13 @@ class RewardsController < ApplicationController
   # GET /rewards/myrewards
   # GET /rewards/myrewards.json
   def myrewards
-    @rewards = Reward.all.where(business: current_business)
+    @rewards = Reward.all.where(business: current_business).where(byed: false)
   end
 
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.all
+    @rewards = Reward.not_expired.where(byed: false)
   end
 
   # GET /rewards/1

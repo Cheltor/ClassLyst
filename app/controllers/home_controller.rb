@@ -9,8 +9,8 @@ class HomeController < ApplicationController
       @rewards = Rewardpurchase.all
       @myrewards = Rewardpurchase.all.where(user: current_user).where.not(id: Redeem.select(:rewardpurchase_id))
     elsif business_signed_in?
-      @rewards = Reward.all
-      @myrewards = Reward.all.where(business: current_business)
+      @rewards = Reward.all.where(byed: false)
+      @myrewards = Reward.all.where(business: current_business).where(byed: false)
     else
       @search = Post.ransack(params[:q])
       @posts = @search.result.includes(:comments)
