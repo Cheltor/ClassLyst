@@ -1,6 +1,8 @@
 class Reward < ApplicationRecord
   belongs_to :business
   has_many :rewardpurchases
+  validates :expdate, presence: true
+
 
   def bye
     update(byed: true)

@@ -4,23 +4,6 @@ class RewardsController < ApplicationController
   before_action :authorized_business, only: [:edit, :update]
   before_action :authenticate_user!, only: [:rewardpurchase]
 
-  def redeem
-    @rewardpurchase = Rewardpurchase.find(params[:id])
-    @redeem = @rewardpurchase.redeems.create(params.permit(:rewardpurchase_id,:user_id))
-    @redeem.user_id = current_user.id
-    @redeem.rewardpurchase_id = @rewardpurchase.id
-
-       respond_to do |format|
-        if @redeem.save
-          format.html { redirect_to valid_url, notice: 'redeem was successfully created.' }
-          format.json { render json: @redeem, status: :created, location: @redeem }
-        else
-          format.html { redirect_to @rewardpurchase}
-          format.json { render json: @redeem.errors, status: :unprocessable_entity }
-        end
-      end
-  end
-
    def valid
   end
 
@@ -106,6 +89,7 @@ class RewardsController < ApplicationController
     @rewardpurchase = @reward.rewardpurchases.create(params.permit(:reward_id,:user_id,:rewardname,:rewardbusiness,:rewardcost))
     @rewardpurchase.rewardname = @reward.name.dup
     @rewardpurchase.rewardbusiness = @reward.business.name.dup
+    @rewardpurchase.bizemail = @reward.business.email.dup
     @rewardpurchase.rewardcost = @reward.cost.to_s.dup
     @rewardpurchase.rewardexp = @reward.expdate.dup
     @rewardpurchase.user_id = current_user.id
@@ -114,6 +98,7 @@ class RewardsController < ApplicationController
         if @rewardpurchase.save
           current_user.decrease_karma
           RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase).user_reward_email.deliver_now
+          RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase, business: @reward.business).biz_reward_email.deliver_now          
           format.html { redirect_to @reward, notice: 'Reward was successfully purchased!' }
           format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }
         else
