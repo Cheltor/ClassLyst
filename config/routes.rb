@@ -40,7 +40,7 @@ resources :contacts, only: [:new, :create]
   resources :enrolls
   resources :universities
   devise_for :businesses
-  devise_for :users, :controllers => { :registrations => "admin_registrations" }
+  devise_for :users
   root 'home#index'
   get 'ourrewards' => 'rewards#myrewards'
 
