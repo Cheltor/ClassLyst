@@ -2,7 +2,7 @@
   "name": "Skoosm2019",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "4.0.7",
     "stimulus": "^1.1.1"
   },
   "devDependencies": {
