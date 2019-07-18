@@ -16,7 +16,6 @@ class User < ApplicationRecord
 
   has_many :rewardpurchases
   has_many :redeems
-  belongs_to :plan
 
   belongs_to :university, :required => true
 

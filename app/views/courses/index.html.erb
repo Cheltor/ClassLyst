@@ -1,7 +1,7 @@
 <% @title="Courses" %>
 
-<div class="contatiner" style="padding-top:30px">
-  <div class="header-2">
+  <div class="contatiner" style="padding-top:30px">
+    <div class="header-2">
       <div class="page-header header-filter page-header-mini">
         <div class="page-header-image" style="background-image: url('/images/coding-team-working-on-laptops.jpg');"></div>
         <div class="container">
@@ -13,30 +13,30 @@
                     <div class="row">
                       <div class="col-md-9">
                         <div class="form-group">
-                     <%= f.text_field :name_cont, placeholder: 'Search all of the courses', class:"form-control" %>
+                          <%= f.text_field :name_cont, placeholder: 'Search all of the courses', class:"form-control" %>
                         </div>
                       </div>
                       <div class="col-md-3">
                         <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
                       </div>
                     </div>
-                  <% end %>
+                    <% end %>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
-</div>
   <% if @courses.blank? %>
-  <% else %>
-  <br>
-  <div class="container-fluid">
-    <div class="card">
-    <div class="card-content" style="text-align:center">
-        <div class="table-responsive">
-            <table class="table">
+    <% else %>
+      <br>
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-content" style="text-align:center">
+            <div class="table-responsive">
+              <table class="table">
                 <thead class="text-primary">
                   <tr>
                     <th>Name</th>
@@ -46,26 +46,28 @@
                 <tbody>
                   <% @courses.each do |course| %>
                     <tr>
-                        <td><strong><%= link_to course.name, course %></strong></td>
-                        <td><%= course.university.name %></td>
+                      <td><strong><%= link_to course.name, course %></strong></td>
+                      <td>
+                        <%= course.university.name %>
+                      </td>
                     </tr>
-                  <% end %>
+                    <% end %>
                 </tbody>
-            </table>
-        </div>
-        <div class="row">
-          <div class="col mr-auto ml-auto">
-            <div class="apple_pagination">
-              <div class="page_info">
-                <%= page_entries_info @posts %>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col mr-auto ml-auto">
+                <div class="apple_pagination">
+                  <div class="page_info">
+                    <%= page_entries_info @posts %>
+                  </div>
+                  <%= will_paginate @posts, :container => false %>
+                </div>
               </div>
-              <%= will_paginate @posts, :container => false %>
             </div>
           </div>
         </div>
-    </div>
-  </div>
-  </div>
-  <% end %>
-  
-</div>
+      </div>
+      <% end %>
+
+        </div>
