@@ -1,32 +1,32 @@
 <% @title="Posts" %>
 
 <div class="contatiner">
-    <div class="header-2">
-        <div class="page-header header-filter page-header-mini">
-          <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-10 ml-auto mr-auto">
-                <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-                  <div class="card-body">
-                    <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
-                      <div class="row">
-                        <div class="col-md-9">
-                          <div class="form-group">
-                       <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control" %>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+  <div class="header-2">
+      <div class="page-header header-filter page-header-mini">
+        <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+                <div class="card-body">
+                  <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <div class="form-group">
+                     <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control" %>
                         </div>
                       </div>
-                    <% end %>
-                  </div>
+                      <div class="col-md-3">
+                        <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
       <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
@@ -69,7 +69,7 @@
     <% end %>
   <% end %>
   </div>
-  <div class="">
+  <div class="container">
    <div class="row">
     <div class="col mr-auto ml-auto">
       <div class="apple_pagination">

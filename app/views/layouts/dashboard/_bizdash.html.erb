@@ -89,6 +89,7 @@
                     <th style="text-align:center">Expires</th>
                     <th style="text-align:center">Time created</th>
                     <th style="text-align:center">Reward purchases</th>
+                    <th style="text-align:center">Currently eligable</th>                    
                   </tr>
                 </thead>
 
@@ -104,6 +105,11 @@
                      <% end %>
                       <td style="text-align:center"><%= time_ago_in_words(reward.created_at) + " ago" %></td>
                       <td style="text-align:center"><%= reward.rewardpurchases.count %></td>
+                      <% if reward.rewardpurchases.where.not(id: Redeem.select(:rewardpurchase_id)).count == 0 %>
+                      <td style="text-align:center"><%= reward.rewardpurchases.where.not(id: Redeem.select(:rewardpurchase_id)).count %></td>
+                          <% else %>
+                      <td style="text-align:center"><%= link_to reward.rewardpurchases.where.not(id: Redeem.select(:rewardpurchase_id)).count, reward %></td>
+                    <% end %>
                     </tr>
                   <% end %>
                 </tbody>

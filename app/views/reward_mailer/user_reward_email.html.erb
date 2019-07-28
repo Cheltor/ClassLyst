@@ -4,12 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @user.email %></h1>
-    <p><%= @rewardpurchase.rewardname %>
+    <h1>Congrats <%= @user.email %>!</h1>
+    <p>You have successfully purchased <%= @rewardpurchase.rewardname %> with your points.
     </p>
     <p>
-      <%= @rewardpurchase.rewardbusiness %>
+      Please take your mobile device to <%= @rewardpurchase.rewardbusiness %> where a staff member will verify your reward. If you are unable to use a mobile device. Please bring a copy of this email to <%= @rewardpurchase.rewardbusiness %>.
     </p>
-    <p><%= @url %></p>
+    <p>For a list of all the rewards you have purchased please visit <%= @url %>.</p>
   </body>
 </html>

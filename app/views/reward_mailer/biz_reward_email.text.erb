@@ -1,9 +1,2 @@
-Welcome to example.com, <%= @user.email %>
-===============================================
- 
-You have successfully signed up to example.com,
-your username is: <%= @rewardpurchase.rewardname %>.
- 
-To login to the site, just follow this link: <%= @rewardpurchase.rewardbusiness %>.
- 
-Thanks for joining and have a great day!
+<%= @user.email %> has used their points to purchase the <%= @rewardpurchase.rewardname %>
+Check your dashboard at <%= @url %> for a list of all the users who have purchased this reward.

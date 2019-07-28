@@ -4,11 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @user.email %></h1>
-    <p><%= @rewardpurchase.rewardname %>
-    </p>
-    <p>
-    </p>
-    <p><%= @url %></p>
+    <h1><%= @user.email %> has used their points to purchase the <%= @rewardpurchase.rewardname %></h1>
+    <p>Check your dashboard at <%= @url %> for a list of all the users who have purchased this reward.</p>
   </body>
 </html>

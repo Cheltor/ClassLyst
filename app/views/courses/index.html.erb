@@ -1,6 +1,6 @@
 <% @title="Courses" %>
 
-  <div class="contatiner" style="padding-top:30px">
+  <div class="contatiner">
     <div class="header-2">
       <div class="page-header header-filter page-header-mini">
         <div class="page-header-image" style="background-image: url('/images/coding-team-working-on-laptops.jpg');"></div>
@@ -10,7 +10,6 @@
               <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
                 <div class="card-body">
                   <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
-                    <div class="row">
                       <div class="col-md-9">
                         <div class="form-group">
                           <%= f.text_field :name_cont, placeholder: 'Search all of the courses', class:"form-control" %>
@@ -19,7 +18,6 @@
                       <div class="col-md-3">
                         <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
                       </div>
-                    </div>
                     <% end %>
                 </div>
               </div>
@@ -28,33 +26,23 @@
         </div>
       </div>
     </div>
-  </div>
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+    <% end %>
   <% if @courses.blank? %>
     <% else %>
       <br>
-      <div class="container-fluid">
+      <h1 style="text-align:center">Courses</h1>
+      <br>
+      <div class="container">
+        <% @courses.each do |course| %>
         <div class="card">
           <div class="card-content" style="text-align:center">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class="text-primary">
-                  <tr>
-                    <th>Name</th>
-                    <th>University</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @courses.each do |course| %>
-                    <tr>
-                      <td><strong><%= link_to course.name, course %></strong></td>
-                      <td>
-                        <%= course.university.name %>
-                      </td>
-                    </tr>
-                    <% end %>
-                </tbody>
-              </table>
+            <strong><%= link_to course.name, course %></strong>,
+                    <%= course.university.name %>
             </div>
+          </div>
+          <% end %>
             <div class="row">
               <div class="col mr-auto ml-auto">
                 <div class="apple_pagination">
