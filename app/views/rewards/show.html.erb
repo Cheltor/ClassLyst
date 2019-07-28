@@ -53,6 +53,25 @@
               </div>
             </div>
           </div>
+          <% if current_business == @reward.business %>
+          <% if @reward.rewardpurchases.where.not(id: Redeem.select(:rewardpurchase_id)).count == 0 %>
+          <% else %>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                  <div class="card-content" style="text-align:center">
+                    <h2>Users who have purchased and are eligible for this reward:</h2>
+                  <% @reward.rewardpurchases.where.not(id: Redeem.select(:rewardpurchase_id)).each do |rp| %>
+                    <p><%= rp.user.email %></p>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
         </div>
       </div>
   </div>

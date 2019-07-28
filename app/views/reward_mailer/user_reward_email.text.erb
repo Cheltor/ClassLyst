@@ -1,10 +1,4 @@
-
-Welcome to example.com, <%= @user.email %>
-===============================================
- 
-You have successfully signed up to example.com,
-your username is: <%= @rewardpurchase.rewardname %>.
- 
-To login to the site, just follow this link: <%= @rewardpurchase.rewardbusiness %>.
- 
-Thanks for joining and have a great day!
+Congrats <%= @user.email %>!
+You have successfully purchased <%= @rewardpurchase.rewardname %> with your points.
+Please take your mobile device to <%= @rewardpurchase.rewardbusiness %> where a staff member will verify your reward. If you are unable to use a mobile device. Please bring a copy of this email to <%= @rewardpurchase.rewardbusiness %>.
+For a list of all the rewards you have purchased please visit <%= @url %>.
