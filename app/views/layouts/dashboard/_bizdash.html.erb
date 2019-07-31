@@ -52,9 +52,9 @@
                   <%= link_to 'Add a Twitter', edit_business_registration_path, class:"nav-link" %>
                     <% else %>
                     <% if current_business.twitter.start_with?('@') %>
-                    <%= link_to current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
+                    <%= link_to 'Twitter', current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
                     <% elsif current_business.twitter.start_with?('http') %>
-                    <%= link_to current_business.twitter, current_business.twitter, :target => "_blank", class:""%>
+                    <%= link_to 'Twitter', current_business.twitter, current_business.twitter, :target => "_blank", class:""%>
                     <% else %>
                     <%= link_to current_business.twitter, "https://www.twitter.com/" + current_business.twitter, :target => "_blank", class:""%>
                     <% end %>
