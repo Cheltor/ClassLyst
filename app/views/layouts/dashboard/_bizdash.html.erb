@@ -1,5 +1,5 @@
 <div class="page-header header-filter page-header-mini" filter-color="black">
-  <div class="page-header-image" data-parallax="false" style="background-image: url('../assets/img/bg24.jpg');">
+  <div class="page-header-image" data-parallax="false" style="background-image: url('images/classic-car-dashboard.jpg');">
   </div>
   <div class="content-center">
     <div class="row">
@@ -25,7 +25,7 @@
               <h4>Reward Code: <%= current_business.code %></h4>
             <h4>Name: <%= current_business.name %></h4>
             <h4>Website: 
-            <% if current_business.website.empty? %>
+            <% if current_business.website.nil? %>
             <%= link_to 'Add a Website', edit_business_registration_path, class:"nav-link" %>
             <% else %>
                 <% if current_business.website.start_with?('http') %>
@@ -35,7 +35,7 @@
                 <% end %>
             <% end %></h4>
             <h4>Facebook:
-              <% if current_business.facebook.empty? %>
+              <% if current_business.facebook.nil? %>
                   <%= link_to 'Add a Facebook', edit_business_registration_path, class:"nav-link" %>
                   <% else %>
                   <% if current_business.facebook.start_with?('@') %>
@@ -48,7 +48,7 @@
               <% end %>
               </h4>
               <h4>Twitter:
-                <% if current_business.twitter.empty? %>
+                <% if current_business.twitter.nil? %>
                   <%= link_to 'Add a Twitter', edit_business_registration_path, class:"nav-link" %>
                     <% else %>
                     <% if current_business.twitter.start_with?('@') %>
@@ -89,7 +89,7 @@
                     <th style="text-align:center">Expires</th>
                     <th style="text-align:center">Time created</th>
                     <th style="text-align:center">Reward purchases</th>
-                    <th style="text-align:center">Currently eligable</th>                    
+                    <th style="text-align:center">Currently eligible</th>                    
                   </tr>
                 </thead>
 
