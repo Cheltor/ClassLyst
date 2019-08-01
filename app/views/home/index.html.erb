@@ -8,13 +8,46 @@
 <%= render "layouts/footer/footer" %>
 <% else %>
 
-<div class="header-2">
+
+<div class="header-2 desktop-only" style="padding-top: 60px">
     <div class="page-header header-filter page-header-small">
       <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1 class="title">Search all of the posts</h1>
+            <h1>Find resources for your college classes by using the search bar down below.</h1>
+          </div>
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+              <div class="card-body">
+            <%= search_form_for @search, url: posts_path, defaults: {wrapper: :inline_field4} do |f| %>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="form-group">
+                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control" %>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+              <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="header-2 mobile-only">
+    <div class="page-header header-filter page-header">
+      <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h1>Find resources for your college classes by using the search bar down below.</h1>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
             <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -48,7 +81,7 @@
     <div class="row">
       <div class="col-md-5">
         <h2 class="title">Simpler. Smarter. Faster.</h2>
-        <h4 class="description">ClassLyst is the online community for students to learn, share their knowledge and recieve rewards.</h4>
+        <h4 class="description">Members can follow their courses and stay up to date on the most recently asked questions and posted resources. Posts and comments can earn members points toward rewards.</h4>
         <div class="info info-horizontal">
             <%= link_to posts_path do %>
             <div class="icon icon-success icon-circle">
