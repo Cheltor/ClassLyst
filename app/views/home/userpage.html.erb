@@ -1,3 +1,5 @@
+<% if user_signed_in? %>
+<% if current_user.email.start_with?('rchelton@umd') %>
 <div class="page-header header-filter page-header-mini" filter-color="black">
     <div class="page-header-image" data-parallax="false" style="background-image: url('../images/man-writing.jpg');">
     </div>
@@ -40,3 +42,5 @@
     </tbody>
   </table>
 </div>
+<% end %>
+<% end %>

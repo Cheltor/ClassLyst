@@ -60,13 +60,21 @@
                     <div class="container">
                     <h3 class="title"><%= @post.title %></h3>
                     <p><%= simple_format @post.content %></p>
-                      <% if @post.url.blank? %>
-                      <br><br><br>
-                      <% else %>
+
+                    <% if @post.url.blank? %>
+                        <br><br><br>
+                        <% else %>
                         <div style="text-align: center">
-                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg" %>
-                        </div>
-                      <% end %>
+                        <% if @post.url.start_with?('www.') %>
+                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+                        <% elsif @post.url.start_with?('http') %>
+                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+                        <% else %>
+                        <%= link_to @post.url, "https://" + @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+                        <% end %>
+                    <% end %>
+
+
                     </div>
                   </div>
                 </div>

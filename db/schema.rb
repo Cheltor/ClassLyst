@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_204603) do
+ActiveRecord::Schema.define(version: 2019_08_02_014602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,11 +56,13 @@ ActiveRecord::Schema.define(version: 2019_07_11_204603) do
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
     t.bigint "post_id"
+    t.datetime "deleted_at"
     t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
     t.index ["cached_votes_up"], name: "index_comments_on_cached_votes_up"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -107,11 +109,13 @@ ActiveRecord::Schema.define(version: 2019_07_11_204603) do
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
+    t.datetime "deleted_at"
     t.index ["cached_votes_down"], name: "index_posts_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_posts_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_posts_on_cached_votes_total"
     t.index ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
     t.index ["course_id"], name: "index_posts_on_course_id"
+    t.index ["deleted_at"], name: "index_posts_on_deleted_at"
     t.index ["ptype_id"], name: "index_posts_on_ptype_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -187,7 +191,9 @@ ActiveRecord::Schema.define(version: 2019_07_11_204603) do
     t.integer "reputation", default: 0
     t.integer "university_id"
     t.integer "plan_id"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

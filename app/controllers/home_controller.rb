@@ -13,7 +13,8 @@ class HomeController < ApplicationController
       @myrewards = Reward.all.where(business: current_business).where(byed: false)
     else
       @search = Post.ransack(params[:q])
-      @posts = @search.result.includes(:comments)
+      @posts = @search.result.includes(:comments).order("created_at DESC")
+      @rewards = Reward.not_expired.where(byed: false).order("created_at DESC")
     end
   end  
 

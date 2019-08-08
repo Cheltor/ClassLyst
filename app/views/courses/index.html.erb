@@ -38,10 +38,14 @@
       <br>
       <div class="container">
         <% @courses.each do |course| %>
-        <div class="card">
-          <div class="card-content" style="text-align:center">
-            <strong><%= link_to course.name, course %></strong>,
-                    <%= course.university.name %>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-content" style="text-align:center; padding: 1em">
+                <strong><%= link_to course.name, course %></strong>,
+                        <%= link_to course.university.name, course %>
+                </div>
+              </div>
             </div>
           </div>
           <% end %>

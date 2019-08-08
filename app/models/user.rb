@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :posts
 
   acts_as_voter
+  acts_as_paranoid
 
   has_many :enrolls
   has_many :courses, :through => :enrolls

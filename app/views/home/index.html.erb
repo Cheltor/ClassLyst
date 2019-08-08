@@ -15,7 +15,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1>Find resources for your college classes by using the search bar down below.</h1>
+            <h1>Find resources for your classes below.</h1>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
             <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -80,8 +80,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-        <h2 class="title">Simpler. Smarter. Faster.</h2>
-        <h4 class="description">Members can follow their courses and stay up to date on the most recently asked questions and posted resources. Posts and comments can earn members points toward rewards.</h4>
+        <h2 class="title" style="text-align:center">On the shoulders of giants.</h2>
+        <h4 class="description" style="text-align:center">You don't need to spend time searching for resources that your classmates have already found. You're not the first person to get confused on that question. Join the community and spend less time studying. Helpful posts and comments earn points and discounts at local businesses. </h4>
         <div class="info info-horizontal">
             <%= link_to posts_path do %>
             <div class="icon icon-success icon-circle">
@@ -93,7 +93,7 @@
             <%= link_to posts_path do %>
             <h4 class="info-title">Search Posts</h4>
             <% end %>
-            <p>Find answers to questions already asked, answers found, and more.</p>
+            <p>Find answers to questions already asked, informaiton found, and more.</p>
           </div>
         </div>
         <div class="info info-horizontal">
@@ -121,7 +121,7 @@
             <%= link_to rewards_path do %>
             <h4 class="info-title">Earn rewards</h4>
             <% end %>
-            <p>Earn points for submitting helpful posts or answering questions.</p>
+            <p>Earn points for submitting helpful posts or answering questions. Points are trading in for rewards at local businesses.</p>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <% @posts.each do |post| %>
+                            <% @posts.first(5).each do |post| %>
                               <tr>
                                 <td><strong><%= link_to post.title, post %></strong></td>
                                 <td><%= link_to post.course.name, post.course %></td>
@@ -155,6 +155,42 @@
                     <div class="col mr-auto ml-auto">
                       <div style="background:#f1f1f1; text-align:center; padding: 1em">
                         <%= link_to 'More Posts', posts_path, class:"btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tablet-container">
+          <div class="container-fluid">
+            <h3 style="text-align:center">Recent Rewards</h3>
+            <div class="card">
+              <div class="card-content" style="text-align:center">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead class="text-primary">
+                              <tr>
+                                <th>Reward</th>
+                                <th>Cost</th>
+                                <th>Expires</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @rewards.first(5).each do |reward| %>
+                              <tr>
+                                <td><strong><%= link_to reward.name, reward %></strong></td>
+                                <td><%= pluralize(reward.try(:cost), 'Point') %></td>
+                                <td><%= reward.expdate.strftime("%m/%d/%Y") %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="row">
+                    <div class="col mr-auto ml-auto">
+                      <div style="background:#f1f1f1; text-align:center; padding: 1em">
+                        <%= link_to 'More Rewards', rewards_path, class:"btn btn-primary" %>
                       </div>
                     </div>
                   </div>
