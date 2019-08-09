@@ -9,8 +9,8 @@
 <% else %>
 
 
-<div class="header-2 desktop-only" style="padding-top: 60px">
-    <div class="page-header header-filter page-header-small">
+<div class="header-2 desktop-only" style="padding-top:">
+    <div class="page-header header-filter page-header">
       <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
       <div class="container">
         <div class="row">
@@ -24,7 +24,7 @@
                   <div class="row">
                     <div class="col-md-9">
                       <div class="form-group">
-                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control" %>
+                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control form-control-lg", style:"border-width: 2px" %>
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -32,6 +32,56 @@
                     </div>
                   </div>
                 <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="info">
+                          <%= link_to posts_path do %>
+            <div class="icon icon-success icon-circle">
+                <i class="material-icons">
+                question_answer
+                </i>
+            </div><% end %>
+              <div class="description">
+                <%= link_to posts_path do %>
+                <h4 class="info-title" style="font-weight: bold">Save Time</h4>
+                <% end %>
+                <p style="font-weight: 900; color: #D0D3D4">Find answers to questions already asked, informaiton found, and more.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info">
+                          <%= link_to courses_path do %>
+            <div class="icon icon-info icon-circle">
+                <i class="material-icons">
+                account_balance
+                </i>
+            </div><% end %>
+              <div class="description">
+                <%= link_to courses_path do %>
+                <h4 class="info-title" style="font-weight: bold">Collaborate</h4>
+                <% end %>
+                <p style="font-weight: 900; color: #D0D3D4">Work with other students both past and present who have taken your courses.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info">
+                          <%= link_to rewards_path do %>
+            <div class="icon icon-warning icon-circle">
+                <i class="material-icons">
+                redeem
+                </i>
+            </div><% end %>
+              <div class="description">
+                <%= link_to rewards_path do %>
+                <h4 class="info-title" style="font-weight: bold">Save Money</h4>
+                <% end %>
+                <p style="font-weight: 900; color: #D0D3D4">Earn points for helpful posts/comments and redeem for discounts at local businesses.</p>
               </div>
             </div>
           </div>
@@ -47,7 +97,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1>Find resources for your college classes by using the search bar down below.</h1>
+            <h1>Find resources for your classes below.</h1>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
             <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -56,13 +106,45 @@
                   <div class="row">
                     <div class="col-md-9">
                       <div class="form-group">
-                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control" %>
+                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control", style:"border-width: 2px" %>
                       </div>
                     </div>
                     <div class="col-md-3">
               <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
                     </div>
                   </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 ml-auto mr-auto">
+            <div class="info">
+              <%= link_to courses_path do %>
+              <div class="icon icon-info icon-circle">
+                <i class="material-icons" style="color:#2CA8FF">
+                  account_balance
+                </i>
+              </div><% end %>
+              <div class="description">
+                <%= link_to courses_path do %>
+                <h4 class="info-title">Courses</h4>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 ml-auto mr-auto">
+            <div class="info">
+              <%= link_to rewards_path do %>
+              <div class="icon icon-warning icon-circle">
+                <i class="material-icons" style="color:#FFB236">
+                  redeem
+                </i>
+              </div><% end %>
+              <div class="description">
+                <%= link_to rewards_path do %>
+                <h4 class="info-title">Rewards</h4>
                 <% end %>
               </div>
             </div>
@@ -79,53 +161,13 @@
 <div class="features-5">
   <div class="container">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-12 mr-auto ml-auto">
         <h2 class="title" style="text-align:center">On the shoulders of giants.</h2>
         <h4 class="description" style="text-align:center">You don't need to spend time searching for resources that your classmates have already found. You're not the first person to get confused on that question. Join the community and spend less time studying. Helpful posts and comments earn points and discounts at local businesses. </h4>
-        <div class="info info-horizontal">
-            <%= link_to posts_path do %>
-            <div class="icon icon-success icon-circle">
-              <i class="material-icons">
-                question_answer
-              </i>
-            </div><% end %>
-          <div class="description">
-            <%= link_to posts_path do %>
-            <h4 class="info-title">Search Posts</h4>
-            <% end %>
-            <p>Find answers to questions already asked, informaiton found, and more.</p>
-          </div>
-        </div>
-        <div class="info info-horizontal">
-            <%= link_to courses_path do %>
-            <div class="icon icon-info icon-circle">
-                <i class="material-icons">
-                account_balance
-                </i>
-            </div><% end %>
-          <div class="description">
-            <%= link_to courses_path do %>
-            <h4 class="info-title">Search by class</h4>
-            <% end %>
-            <p>Find information associated with each of your classes.</p>
-          </div>
-        </div>
-        <div class="info info-horizontal">
-            <%= link_to rewards_path do %>
-            <div class="icon icon-warning icon-circle">
-                <i class="material-icons">
-                redeem
-                </i>
-            </div><% end %>
-          <div class="description">
-            <%= link_to rewards_path do %>
-            <h4 class="info-title">Earn rewards</h4>
-            <% end %>
-            <p>Earn points for submitting helpful posts or answering questions. Points are trading in for rewards at local businesses.</p>
-          </div>
-        </div>
       </div>
-      <div class="col-md-7">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
         <div class="tablet-container">
           <div class="container-fluid">
             <h3 style="text-align:center">Recent Posts</h3>
@@ -162,6 +204,8 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-md-6">
         <div class="tablet-container">
           <div class="container-fluid">
             <h3 style="text-align:center">Recent Rewards</h3>

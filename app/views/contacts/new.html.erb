@@ -1,20 +1,43 @@
 <% @title="Business Sign Up" %>
-  <div class="pricing-3 section-image page-header header-filter" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
-      <div class="container">
-        <div class="row">
 
-          <div class="col-md-6 ml-auto mr-auto text-center">
+
+  <div class="pricing-3 section-image page-header header-filter desktop-only" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
+          <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h6 class="text-muted">Welcome to ClassLyst</h6>
           <% flash.each do |name, msg| %> 
            <br>  
             <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %> 
           <% end %> 
-            <h2 class="title">Go to where the students are!</h2>
           </div>
         </div>
         <div class="space-top"></div>
         <div class="row">
-
-          <div class="col-lg-4 mr-auto ml-auto">
+          <div class="col-md-6">
+            <div class="card card-plain">
+              <div class="card-body">
+                            <h2 class="" style="color: white">How does the reward system work?</h2>
+                  <h4 class="card-title" style="color: white">Sign up for a Business Account</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  Businesses create a Business Account and create a Business PIN which will allow students and professors to redeem their rewards on location with their mobile device. 
+                </p>
+                  <h4 class="card-title" style="color: white">Create Rewards</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  After an account is created, businesses are able to create rewards for students to purchase with points they have earned through their posts and comments.
+                </p>
+                  <h4 class="card-title" style="color: white">Redeem Rewards</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  Students will bring their phone or printed email to your business where staff verifies the reward by typing the Business PIN into the phone or checking if their email is on the Reward Purchased List.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 offset-md-1">
+            <h2 class="" style="color: white; padding-top: 20px">Go to where the students are!</h2>
             <div class="card card-pricing" data-background="color" data-color="blue">
               <div class="card-body">
                 <h6 class="card-category" style="color:black">Business Sign Up</h6>
@@ -46,9 +69,7 @@
                 <% end %>
               </div>
             </div>
-          </div>
-                    <div class="col-lg-4 ml-auto mr-auto">
-            <div class="card card-pricing">
+                        <div class="card card-pricing">
               <div class="card-body">
                 <h6 class="card-category" style="color:black">Not your first time?</h6>
                 <div class="card-icon">
@@ -58,6 +79,100 @@
                 <div class="card-footer">
                   <%= link_to "Sign in", new_business_session_path, class: "btn btn-primary btn-lg" %>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="pricing-3 section-image page-header header-filter mobile-only" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
+          <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+            <h6 class="text-muted">Welcome to ClassLyst</h6>
+          <% flash.each do |name, msg| %> 
+           <br>  
+            <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %> 
+          <% end %> 
+          </div>
+        </div>
+        <div class="space-top"></div>
+        <div class="row">
+          <div class="col-md-4 offset-md-1">
+            <h2 class="" style="color: white; padding-top: 20px">Go to where the students are!</h2>
+            <div class="card card-pricing" data-background="color" data-color="blue">
+              <div class="card-body">
+                <h6 class="card-category" style="color:black">Business Sign Up</h6>
+                
+                      <%= form_for @contact do |f| %>
+                  <br>
+                                  <div class="form-group">
+                        <%= f.text_field :name, required: true, autofocus: true, :class => "form-control", placeholder: "Business Name" %>
+                                  </div>
+                                  <div class="form-group">
+                    <%= f.email_field :email, required: true, :class => "form-control", placeholder: "Email" %>
+                                  </div>
+  
+                                  <!-- If you want to add a checkbox to this form, uncomment this code
+  
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox">
+                                      <span class="form-check-sign"></span>
+                                      I agree to the terms and <a href="#something">conditions</a>.
+                                    </label>
+                                  </div> -->
+  
+                                  <div class="card-footer text-center">
+                                    
+                                      <%= f.button :Submit, class: "btn btn-primary btn-round btn-lg" %> 
+                                  </div>
+                                  
+                <% end %>
+              </div>
+            </div>
+                        <div class="card card-pricing">
+              <div class="card-body">
+                <h6 class="card-category" style="color:black">Not your first time?</h6>
+                <div class="card-icon">
+                  <i class="nc-icon nc-user-run"></i>
+                </div>
+
+                <div class="card-footer">
+                  <%= link_to "Sign in", new_business_session_path, class: "btn btn-primary btn-lg" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="pricing-3 section-image page-header header-filter mobile-only" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
+          <div class="container">
+        <div class="space-top"></div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-plain">
+              <div class="card-body">
+                            <h2 class="" style="color: white">How does the reward system work?</h2>
+                  <h4 class="card-title" style="color: white">Sign up for a Business Account</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  Businesses create a Business Account and create a Business PIN which will allow students and professors to redeem their rewards on location with their mobile device. 
+                </p>
+                  <h4 class="card-title" style="color: white">Create Rewards</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  After an account is created, businesses are able to create rewards for students to purchase with points they have earned through their posts and comments.
+                </p>
+                  <h4 class="card-title" style="color: white">Redeem Rewards</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  Students will bring their phone or printed email to your business where staff verifies the reward by typing the Business PIN into the phone or checking if their email is on the Reward Purchased List.
+                </p>
               </div>
             </div>
           </div>
