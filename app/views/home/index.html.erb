@@ -9,13 +9,13 @@
 <% else %>
 
 
-<div class="header-2 desktop-only" style="padding-top:">
+<div class="header-2 desktop-only" style="padding-top: 60px">
     <div class="page-header header-filter page-header">
       <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1>Find resources for your classes below.</h1>
+            <h2>Find resources for your classes here!</h2>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
             <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -24,7 +24,7 @@
                   <div class="row">
                     <div class="col-md-9">
                       <div class="form-group">
-                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control form-control-lg", style:"border-width: 2px" %>
+                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control form-control-lg", style:"border-width: 2px; background-color:white" %>
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -45,12 +45,14 @@
                 question_answer
                 </i>
             </div><% end %>
+
               <div class="description">
                 <%= link_to posts_path do %>
                 <h4 class="info-title" style="font-weight: bold">Save Time</h4>
                 <% end %>
-                <p style="font-weight: 900; color: #D0D3D4">Find answers to questions already asked, informaiton found, and more.</p>
+                <p style="font-weight: 900; color: white">Find answers to questions already asked, informaiton found, and more.</p>
               </div>
+
             </div>
           </div>
           <div class="col-md-4">
@@ -65,7 +67,7 @@
                 <%= link_to courses_path do %>
                 <h4 class="info-title" style="font-weight: bold">Collaborate</h4>
                 <% end %>
-                <p style="font-weight: 900; color: #D0D3D4">Work with other students both past and present who have taken your courses.</p>
+                <p style="font-weight: 900; color: white">Work with other students both past and present who have taken your courses.</p>
               </div>
             </div>
           </div>
@@ -81,7 +83,7 @@
                 <%= link_to rewards_path do %>
                 <h4 class="info-title" style="font-weight: bold">Save Money</h4>
                 <% end %>
-                <p style="font-weight: 900; color: #D0D3D4">Earn points for helpful posts/comments and redeem for discounts at local businesses.</p>
+                <p style="font-weight: 900; color: white">Earn points for helpful posts/comments and redeem for discounts at local businesses.</p>
               </div>
             </div>
           </div>
@@ -94,7 +96,7 @@
 <div class="header-2 mobile-only">
     <div class="page-header header-filter page-header">
       <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center">
             <h1>Find resources for your classes below.</h1>
@@ -129,7 +131,7 @@
               </div><% end %>
               <div class="description">
                 <%= link_to courses_path do %>
-                <h4 class="info-title">Courses</h4>
+                <h4 class="info-title" style="color: white">Courses</h4>
                 <% end %>
               </div>
             </div>
@@ -144,7 +146,7 @@
               </div><% end %>
               <div class="description">
                 <%= link_to rewards_path do %>
-                <h4 class="info-title">Rewards</h4>
+                <h4 class="info-title" style="color: white">Rewards</h4>
                 <% end %>
               </div>
             </div>

@@ -4,16 +4,16 @@
   <div class="header-2">
       <div class="page-header header-filter page-header-mini">
         <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-                <div class="card-body">
+                <div class="card-body" style="padding-top:100px">
                   <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
                     <div class="row">
                       <div class="col-md-9">
                         <div class="form-group">
-                     <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control" %>
+                     <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -36,7 +36,9 @@
   <br>
   <h1 style="text-align:center">Posts</h1>
   <br>
-  <div class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
     <% @posts.each do |post| %>
     <div class="card">
       <div class="container">
@@ -68,6 +70,8 @@
     </div>
     <% end %>
   <% end %>
+  </div>
+  </div>
   </div>
   <div class="container">
    <div class="row">
