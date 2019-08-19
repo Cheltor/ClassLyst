@@ -1,42 +1,42 @@
 <% @title="Courses" %>
 
-  <div class="contatiner">
-    <div class="header-2">
+<div class="contatiner">
+  <div class="header-2">
       <div class="page-header header-filter page-header-mini">
-        <div class="page-header-image" style="background-image: url('/images/coding-team-working-on-laptops.jpg');"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10 ml-auto mr-auto">
-            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-              <div class="card-body">
-            <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
-                  <div class="row">
-                    <div class="col-md-9">
-                      <div class="form-group">
-                   <%= f.text_field :name_cont, placeholder: 'Search all of the courses', class:"form-control" %>
+        <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+                <div class="card-body" style="padding-top:100px">
+                  <%= search_form_for @search, defaults: {wrapper: :inline_field4} do |f| %>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <div class="form-group">
+                     <%= f.text_field :name_cont, placeholder: 'Search all of the courses', class:"form-control", style:"border-width: 2px;" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
                       </div>
                     </div>
-                    <div class="col-md-3">
-              <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
-                    </div>
-                  </div>
-                <% end %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
     </div>
-    <% flash.each do |name, msg| %>
-      <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
-    <% end %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
   <% if @courses.blank? %>
-    <% else %>
-      <br>
-      <h1 style="text-align:center">Courses</h1>
-      <br>
-      <div class="container">
+  <% else %>
+  <br>
+  <h1 style="text-align:center">Courses</h1>
+  <br>
+      <div class="container-fluid">
         <% @courses.each do |course| %>
         <div class="row">
           <div class="col-md-3">
@@ -44,24 +44,35 @@
               <div class="card-content" style="text-align:center; padding: 1em">
                 <strong><%= link_to course.name, course %></strong>,
                         <%= link_to course.university.name, course %>
-                </div>
               </div>
             </div>
           </div>
-          <% end %>
-            <div class="row">
-              <div class="col mr-auto ml-auto">
-                <div class="apple_pagination">
-                  <div class="page_info">
-                    <%= page_entries_info @posts %>
-                  </div>
-                  <%= will_paginate @posts, :container => false %>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+      <% end %>
+      </div>
+<% end %>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col mr-auto ml-auto">
+      <div class="apple_pagination">
+        <div class="page_info">
+          <%= page_entries_info @courses %>
+        </div>
+        <%= will_paginate @courses, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="about-contact">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 mr-auto ml-auto">
+          <h2 class="text-center title">Couldn't find what you're looking for?</h2>
+          <h4 class="text-center description">Submit a request for your course to be added to ryan@classlyst.com.</h4>
         </div>
       </div>
-      <% end %>
+    </div>
+  </div>
+</div>
 
-        </div>
+

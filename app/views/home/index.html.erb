@@ -9,12 +9,12 @@
 <% else %>
 
 
-<div class="header-2 desktop-only" style="padding-top: 60px">
+<div class="header-2 desktop-only" style="padding-top: 55px">
     <div class="page-header header-filter page-header">
       <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
+          <div class="col-md-8 ml-auto mr-auto text-center" style="padding-top: 60px">
             <h2>Find resources for your classes here!</h2>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
@@ -24,7 +24,7 @@
                   <div class="row">
                     <div class="col-md-9">
                       <div class="form-group">
-                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control form-control-lg", style:"border-width: 2px; background-color:white" %>
+                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control form-control-lg", style:"border-width: 2px;" %>
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -98,8 +98,8 @@
       <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center">
-            <h1>Find resources for your classes below.</h1>
+          <div class="col-md-8 ml-auto mr-auto text-center" style="padding-top:90px">
+            <h1>Find resources for your classes here!</h1>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
             <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -121,22 +121,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-6 ml-auto mr-auto">
-            <div class="info">
-              <%= link_to courses_path do %>
-              <div class="icon icon-info icon-circle">
-                <i class="material-icons" style="color:#2CA8FF">
-                  account_balance
-                </i>
-              </div><% end %>
-              <div class="description">
-                <%= link_to courses_path do %>
-                <h4 class="info-title" style="color: white">Courses</h4>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-6 ml-auto mr-auto">
+          <div class="col-md-12 ml-auto mr-auto">
             <div class="info">
               <%= link_to rewards_path do %>
               <div class="icon icon-warning icon-circle">
