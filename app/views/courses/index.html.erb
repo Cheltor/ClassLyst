@@ -4,7 +4,7 @@
   <div class="header-2">
       <div class="page-header header-filter page-header-mini">
         <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
@@ -37,8 +37,8 @@
   <h1 style="text-align:center">Courses</h1>
   <br>
       <div class="container-fluid">
-        <% @courses.each do |course| %>
         <div class="row">
+        <% @courses.each do |course| %>
           <div class="col-md-3">
             <div class="card">
               <div class="card-content" style="text-align:center; padding: 1em">
@@ -47,8 +47,8 @@
               </div>
             </div>
           </div>
-        </div>
       <% end %>
+        </div>
       </div>
 <% end %>
   <div class="container-fluid">
