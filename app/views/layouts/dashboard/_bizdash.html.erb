@@ -60,6 +60,26 @@
                       <% end %>
                 <% end %>
               </h4>
+              <h4>Instagram:
+                <% if current_business.instagram.nil? %>
+                  <%= link_to 'Add an Instagram', edit_business_registration_path, class:"nav-link" %>
+                  <% else %>
+                      <% if current_business.instagram.start_with?('@') %>
+                      <%= link_to current_business.instagram, "https://www.instagram.com/" + current_business.instagram, :target => "_blank", class:""%>
+                      <% elsif current_business.instagram.start_with?('http') %>
+                      <%= link_to 'Instagram', current_business.instagram, :target => "_blank", class:""%>
+                      <% else %>
+                      <%= link_to current_business.instagram, "https://www.instagram.com/" + current_business.instagram, :target => "_blank", class:""%>
+                      <% end %>
+                <% end %>
+              </h4>
+              <h4>Snapchat:
+                <% if current_business.snapchat.nil? %>
+                  <%= link_to 'Add a Snapchat', edit_business_registration_path, class:"nav-link" %>
+                  <% else %>
+                  <%= current_business.snapchat %>
+                <% end %>
+              </h4>
             </div> 
             </div>
             <div class="row">

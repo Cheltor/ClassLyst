@@ -12,11 +12,13 @@
         <div class="page-header-image" data-parallax="false" style="background-image: url('../images/blank-notebook-on-creative-workspace_925x.jpg');">
         </div>
         <div class="content-center">
-          <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center">
-              <h2 class="title"><%= truncate(@post.title, :length => 36) %></h2>
-              <h3><%= pluralize(@post.try(:weighted_score), 'point')%></h3>
-              <h4>By: <%= @post.user.email %> for <%= link_to @post.course.name, @post.course %></h4>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title"><%= truncate(@post.title, :length => 36) %></h2>
+                <h3><%= pluralize(@post.try(:weighted_score), 'point')%></h3>
+                <h4>By: <%= @post.user.email %> for <%= link_to @post.course.name, @post.course, style: "color:white" %></h4>
+              </div>
             </div>
           </div>
         </div>
@@ -25,10 +27,11 @@
         <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %> <br>
       <% end %>
       <div class="section">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">
-              <div class="button-container">
+            <div class="col-md-8 ml-auto mr-auto">
+              <br>
+              <div class="button-container-fluid">
                 <%= link_to like_post_path(@post), method: :put, class: "btn btn-icon btn-lg btn-info btn-round" do %>
                   <i class="material-icons" style="padding-top:16px">thumb_up</i><%= @post.get_upvotes.size %>
                 <% end %>
@@ -52,12 +55,12 @@
           </div>
         </div>
         <div class="section">
-          <div class="container">
+          <div class="container-fluid">
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">
                 <div class="card">
                   <div class="card-content">
-                    <div class="container">
+                    <div class="container-fluid">
                     <h3 class="title"><%= @post.title %></h3>
                     <p><%= simple_format @post.content %></p>
 
@@ -83,7 +86,7 @@
           </div>
         </div>
         <div class="section section-comments">
-          <div class="container">
+          <div class="container-fluid">
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">
                 <div class="media-area">
