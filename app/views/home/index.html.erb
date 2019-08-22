@@ -123,17 +123,20 @@
         <div class="row">
           <div class="col-md-12 ml-auto mr-auto">
             <div class="info">
-              <%= link_to rewards_path do %>
-              <div class="icon icon-warning icon-circle">
-                <i class="material-icons" style="color:#FFB236">
-                  redeem
+            <%= link_to posts_path do %>
+            <div class="icon icon-success icon-circle">
+                <i class="material-icons">
+                question_answer
                 </i>
-              </div><% end %>
+            </div><% end %>
+
               <div class="description">
-                <%= link_to rewards_path do %>
-                <h4 class="info-title" style="color: white">Rewards</h4>
+                <%= link_to posts_path do %>
+                <h4 class="info-title" style="font-weight: bold">All Posts</h4>
                 <% end %>
+                <p style="font-weight: 900; color: white">Find answers to questions already asked, informaiton found, and more.</p>
               </div>
+
             </div>
           </div>
         </div>
