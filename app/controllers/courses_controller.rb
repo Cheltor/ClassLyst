@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @search = Course.ransack(params[:q])
-    @courses = @search.result(distinct: true).paginate(page: params[:page], per_page: 15)
+    @courses = @search.result(distinct: true).paginate(page: params[:page], per_page: 24)
   end
 
   # GET /courses/1
