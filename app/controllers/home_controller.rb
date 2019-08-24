@@ -28,4 +28,8 @@ class HomeController < ApplicationController
   def userpage
     @users = User.all
   end
+
+  def landingpage
+    render :layout => false
+  end
 end

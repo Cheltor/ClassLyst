@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/landingpage'
 resources :contacts, only: [:new, :create]
 
   get 'profsignup' => 'home#profsignup'
