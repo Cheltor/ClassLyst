@@ -25,7 +25,7 @@
               <h4>Reward Code: <%= current_business.code %></h4>
             <h4>Name: <%= current_business.name %></h4>
             <h4>Website: 
-            <% if current_business.website.nil? %>
+            <% if current_business.website.blank? %>
             <%= link_to 'Add a Website', edit_business_registration_path, class:"nav-link" %>
             <% else %>
                 <% if current_business.website.start_with?('http') %>
@@ -35,7 +35,7 @@
                 <% end %>
             <% end %></h4>
             <h4>Facebook:
-              <% if current_business.facebook.nil? %>
+              <% if current_business.facebook.blank? %>
                   <%= link_to 'Add a Facebook', edit_business_registration_path, class:"nav-link" %>
                   <% else %>
                   <% if current_business.facebook.start_with?('@') %>
@@ -48,7 +48,7 @@
               <% end %>
               </h4>
               <h4>Twitter:
-                <% if current_business.twitter.nil? %>
+                <% if current_business.twitter.blank? %>
                   <%= link_to 'Add a Twitter', edit_business_registration_path, class:"nav-link" %>
                   <% else %>
                       <% if current_business.twitter.start_with?('@') %>
@@ -61,7 +61,7 @@
                 <% end %>
               </h4>
               <h4>Instagram:
-                <% if current_business.instagram.nil? %>
+                <% if current_business.instagram.blank? %>
                   <%= link_to 'Add an Instagram', edit_business_registration_path, class:"nav-link" %>
                   <% else %>
                       <% if current_business.instagram.start_with?('@') %>
@@ -74,7 +74,7 @@
                 <% end %>
               </h4>
               <h4>Snapchat:
-                <% if current_business.snapchat.nil? %>
+                <% if current_business.snapchat.blank? %>
                   <%= link_to 'Add a Snapchat', edit_business_registration_path, class:"nav-link" %>
                   <% else %>
                   <%= current_business.snapchat %>

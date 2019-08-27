@@ -1,5 +1,7 @@
 <% if @reward.byed == true %>
-<h1>This reward has been deleted.</h1>
+<div style="padding-top: 90px">
+  <h1 style="text-align: center">This reward has been deleted.</h1>
+</div>
 <% else %>
 <% @title= truncate(@reward.name, :length => 35) %>
 

@@ -153,7 +153,9 @@
     <div class="row">
       <div class="col-md-12 mr-auto ml-auto">
         <h2 class="title" style="text-align:center">On the shoulders of giants.</h2>
-        <h4 class="description" style="text-align:center">You don't need to spend time searching for resources that your classmates have already found. You're not the first person to get confused on that question. Join the community and spend less time studying. Helpful posts and comments earn points and discounts at local businesses. </h4>
+        <h4 class="description" style="text-align:center">You don't need to spend time searching for resources that your classmates have already found. You're not the first person to get confused on that question. Join the community and spend less time studying. Your helpful posts and comments earn you points and discounts at local businesses. </h4>
+
+        <h4></h4>
       </div>
     </div>
     <div class="row">
@@ -201,6 +203,13 @@
             <h3 style="text-align:center">Recent Rewards</h3>
             <div class="card">
               <div class="card-content" style="text-align:center">
+              <% if @rewards.blank? %>
+                <br>
+                <br>
+                <h4 style="text-align:center">More rewards are coming soon!</h4>
+                <br>
+                <br>
+                <% else %>
                   <div class="table-responsive">
                       <table class="table">
                           <thead class="text-primary">
@@ -221,6 +230,7 @@
                           </tbody>
                       </table>
                   </div>
+
                   <div class="row">
                     <div class="col mr-auto ml-auto">
                       <div style="background:#f1f1f1; text-align:center; padding: 1em">
@@ -228,6 +238,7 @@
                       </div>
                     </div>
                   </div>
+                  <% end %>
               </div>
             </div>
           </div>
