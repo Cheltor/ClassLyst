@@ -1,5 +1,7 @@
 <% if @post.flagged == true %>
-<h1>This post has been flagged.</h1>
+<div style="padding-top: 90px">
+  <h1 style="text-align: center">This post has been flagged.</h1>
+</div>
 <% else %>
 
 <% @title= truncate(@post.title, :length => 35) %>
