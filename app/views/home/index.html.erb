@@ -15,6 +15,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto text-center" style="padding-top: 60px">
+              <% flash.each do |name, msg| %>
+                  <br>
+              <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %>
+              <% end %>
             <h2>Find resources for your classes here!</h2>
           </div>
           <div class="col-md-10 ml-auto mr-auto">
@@ -143,10 +147,6 @@
       </div>
     </div>
 </div>
-
-<% flash.each do |name, msg| %>
-  <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
-<% end %>
 
 <div class="features-5">
   <div class="container">
