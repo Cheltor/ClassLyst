@@ -1,93 +1,81 @@
-<% @title="Student Sign Up" %>
+<% @title="Student Sign Up" %> 
+  <div class="pricing-3 section-image page-header header-filter" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
+      <div class="container">
+        <div class="row">
 
-
-<body class="signup-page">
-  
-  <div class="page-header header-filter" filter-color="black">
-      <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
-      <div class="content">
-          <div class="container">
-              <div class="row">
-              <% flash.each do |name, msg| %>
-                  <br>
-              <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %>
-              <% end %>
-                  <div class="col-md-4 ml-auto mr-auto">
-                      <div class="info info-horizontal">
-                          <div class="icon icon-primary">
-                <i class="material-icons">
-                                  dashboard
-                              </i>
-                          </div>
-                          <div class="description">
-                              <h5 class="info-title">Dashboard</h5>
-                              <p class="description">
-                                 Users have access to a dashboard showing all of their enrolled courses, posts associated with those courses.
-                              </p>
-                          </div>
-                      </div>
-  
-                      <div class="info info-horizontal">
-                          <div class="icon icon-primary">
-                <i class="material-icons">
-                                  attach_money
-                              </i>
-                          </div>
-                          <div class="description">
-                              <h5 class="info-title">Earn rewards</h5>
-                              <p class="description">
-                                  Helpful posts and comments will earn you rewards.
-                              </p>
-                          </div>
-                      </div>
-                    <br>
-                  </div>
-                  <div class="col-md-4 mr-auto">
-                      <div class="card card-signup">
-                          <div class="card-body">
-                          <% if params[:plan] == '1' %>
-                          <h4 class="card-title text-center">Admin Signup</h4>
-                          <% else %>
-                <h4 class="card-title text-center">Student Signup</h4>
-                <% end %>
-                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                  <%= hidden_field_tag 'plan', params[:plan] %>
-                  <div class="form-group">
-                      <%= f.collection_select :university_id, University.all, :id, :name, {}, {:class=>'form-control'} %>
-                  </div>
-                                  <div class="form-group">
-                      <%= f.email_field :email, placeholder: 'Must use .edu email', autofocus: true, class: "form-control" %>
-                                  </div>
-                                  <div class="form-group">
-                      <%= f.password_field :password, placeholder: 'Password must be at least 8 character minimum.', autocomplete: "off", class: "form-control" %>
-                                  </div>
-  
-                                  <div class="form-group">
-                      <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', autocomplete: "off", class: "form-control"  %>
-                                  </div>
-  
-                                  <!-- If you want to add a checkbox to this form, uncomment this code
-  
-                                  <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input class="form-check-input" type="checkbox">
-                                      <span class="form-check-sign"></span>
-                                      I agree to the terms and <a href="#something">conditions</a>.
-                                    </label>
-                                  </div> -->
-  
-                                  <div class="card-footer text-center">                                    <%= f.submit "Sign up", class: "btn btn-primary btn-round btn-lg" %>
-                                  </div>
-                              <% end %>
-                          </div>
-                      </div>
-                        <h5 class="info-title">Already have an account?</h5>
-                          <%= link_to 'Sign In', profsignup_path, class:"btn btn-primary btn-lg"%>
-                  </div><div></div>
-              </div>
+          <div class="col-md-6 ml-auto mr-auto text-center">
+          <% flash.each do |name, msg| %> 
+           <br>  
+            <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %> 
+          <% end %> 
+            <h2 class="title">Join the community</h2>
+            <h5 class="description">Spend less time searching for information that has already been found.</h5>
           </div>
+        </div>
+        <div class="space-top"></div>
+        <div class="row">
+          <div class="col-lg-6 desktop-only">
+            <div class="card card-plain">
+              <div class="card-body">
+                  <h4 class="card-title" style="color: white">Stay Up To Date</h4>
+                <p class="card-description">
+                  Follow your classes and stay in the loop whenever new information is found. 
+                </p>
+                  <h4 class="card-title" style="color: white">Earn Points</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  Upvotes on posts and comments earn you points. Points can be exchanged for rewards at local businesses.
+                </p>
+                  <h4 class="card-title" style="color: white">Contribute To The Conversation</h4>
+                <h6 class="card-category text-muted"></h6>
+                <p class="card-description">
+                  Members are able to post resources and make comments on other posts. 
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1">
+            <div class="desktop-only">
+              <br>
+              <br>
+            </div>
+
+            <div class="card card-pricing" data-background="color" data-color="blue">
+              <div class="card-body">
+                <h6 class="card-category" style="color:black">Student Sign Up</h6>
+                
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <%= hidden_field_tag 'plan', params[:plan] %>
+                    <div class="form-group">
+                        <%= f.collection_select :university_id, University.all, :id, :name, {}, {:class=>'form-control'} %>
+                    </div>
+                                    <div class="form-group">
+                        <%= f.email_field :email, placeholder: 'Must use .edu email', autofocus: true, class: "form-control" %>
+                                    </div>
+                                    <div class="form-group">
+                        <%= f.password_field :password, placeholder: 'Password must be at least 8 character minimum.', autocomplete: "off", class: "form-control" %>
+                                    </div>
+    
+                                    <div class="form-group">
+                        <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', autocomplete: "off", class: "form-control"  %>
+                                    </div>
+    
+                                    <!-- If you want to add a checkbox to this form, uncomment this code
+    
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                        I agree to the terms and <a href="#something">conditions</a>.
+                                      </label>
+                                    </div> -->
+    
+                                    <div class="card-footer text-center">                                    <%= f.submit "Sign up", class: "btn btn-primary btn-round btn-lg" %>
+                                    </div>
+                                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-            
-  
-  </div>  
-</body>
+    </div>

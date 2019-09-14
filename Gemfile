@@ -43,6 +43,8 @@ gem 'mail_form', '~> 1.5', '>= 1.5.1'
 
 gem "paranoia"
 
+gem 'geocoder'
+
 group :production do
   # Use postgres as the database for production
   gem 'pg'
