@@ -1,18 +1,3 @@
-<head>
-  <script>
-    $(document).ready(function() {
-        $("#fname").keyup(function() {
-            if (this.value ==   <%= @rewardpurchase.reward.business.code %>) {
-                $("#pete").css("display", "block");
-            }
-            else {
-                $("#pete").css("display", "none");
-            }
-        });
-    });
-  </script>
-</head>
-
 <body class="blog-post">
   <div class="wrapper">
     <div class="page-header header-filter page-header-mini" filter-color="black">
@@ -37,45 +22,13 @@
                   <%= content_tag(:div, msg, class: "alert alert-info") %>
                 <% end %>
                 <h3 class="title"><%= @rewardpurchase.reward.name %> at <%= @rewardpurchase.reward.business.name %></h3>
-                  <p id="demo">Click the button to get your coordinates:</p>
-                  <button onclick="getLocation()">Try It</button>
-                  <script>
-                      var x=document.getElementById("demo");
-                      var lat;
-                      var long;
-                      function getLocation()
-                      {
-                          if (navigator.geolocation)
-                          {
-                              navigator.geolocation.getCurrentPosition(showPosition);
-
-                          }
-                          else{x.innerHTML="Geolocation is not supported by this browser.";}
-                      }
-                      function showPosition(position)
-                      {
-                          lat = position.coords.latitude;
-                          long = position.coords.longitude;
-                          x.innerHTML="Latitude: " + lat +
-                                  "<br>Longitude: " + long;
-
-                          $.ajax({
-                              type: 'POST',
-                              url: 'http://localhost:3000/locations',
-                              data: { lat: lat, long: long },
-                              contentType: 'application/json',
-                              dataType: 'json'
-
-                          });
-                      }
-                  </script>
-
                 <div class="card">
                   <div class="card-content">
                     <div class="container text-center">
                       <br>
                       <p>Bring this screen to the store and show it to the cashier.</p>
-                      <p>The business will input their specific code to prove that the reward is valid.</p>
+                      <p>The business will press the redeem button to confirm the reward.</p>
+                      <%= button_to 'Redeem', redeem_rewardpurchase_path(@rewardpurchase), method: :post, :class => 'btn btn-primary btn-round btn-lg' %>
                     </div>
                   </div>
                 </div>

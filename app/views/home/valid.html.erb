@@ -1,4 +1,28 @@
-<div style="padding-top: 200px">
-<h1>The Reward is valid!</h1>
+<div class="header-2 desktop-only" style="padding-top: 55px">
+    <div class="page-header header-filter page-header">
+      <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center" style="padding-top: 60px">
+              <% flash.each do |name, msg| %>
+                  <br>
+              <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %>
+              <% end %>
+          </div>
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+						<h1>This reward is valid!</h1>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
-

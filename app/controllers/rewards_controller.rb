@@ -97,7 +97,7 @@ class RewardsController < ApplicationController
        respond_to do |format|
         if @rewardpurchase.save
           current_user.purchase_reward(@reward.cost)
-          RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase).user_reward_email.deliver_now
+          # RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase).user_reward_email.deliver_now
           RewardMailer.with(user: current_user, reward: @reward, rewardpurchase: @rewardpurchase, business: @reward.business).biz_reward_email.deliver_now          
           format.html { redirect_to root_url, notice: 'Reward was successfully purchased!' }
           format.json { render json: @rewardpurchase, status: :created, location: @rewardpurchase }

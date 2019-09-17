@@ -11,7 +11,7 @@ class RewardpurchasesController < ApplicationController
 
        respond_to do |format|
         if @redeem.save
-          RedeemMailer.with(user: current_user, rewardpurchase: @rewardpurchase, email: @rewardpurchase.bizemail).biz_redeem_email.deliver_now
+          # RedeemMailer.with(user: current_user, rewardpurchase: @rewardpurchase, email: @rewardpurchase.bizemail).biz_redeem_email.deliver_now
           format.html { redirect_to valid_url, notice: 'Reward was successfully redeemed.' }
           format.json { render json: @redeem, status: :created, location: @redeem }
         else
