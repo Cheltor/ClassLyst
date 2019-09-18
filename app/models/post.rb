@@ -9,4 +9,12 @@ class Post < ApplicationRecord
   def flag
     update(flagged: true)
   end
+
+  def useranon
+  	if @post.user.anon_id == 1
+      "#{post.user.email}"
+  	else
+  	  "anon"
+  	end
+  end
 end

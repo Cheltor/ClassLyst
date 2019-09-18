@@ -10,7 +10,11 @@
     <strong>[removed]</strong> posted
     <p>[removed]</p>    
   <% else %>
-    <strong><%= comment.user.email %></strong>
+    <% if comment.user.anon_id == 2 %>
+      <strong>Anonymous (<%= comment.user.reputation %>)</strong>
+    <% else %>
+      <strong><%= comment.user.email %> (<%= comment.user.reputation %>)</strong>
+    <% end %>
       posted
   <div>
 

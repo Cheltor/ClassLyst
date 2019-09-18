@@ -39,8 +39,13 @@
         </div>
         <br>
         <div class="field">
-          <%= f.label :password_confirmation %><br />
+          <label>New Password Confirmation</label><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <label>Post Anonymously</label>
+            <%= f.collection_select :anon_id, Anon.all, :id, :hide, {}, {:class=>'form-control'} %>
         </div>
         <br>
         <div class="field">
@@ -49,12 +54,12 @@
         </div>
         <br>
         <div class="actions">
-          <%= f.submit "Update my password", class: "btn btn-primary btn-round" %>
+          <%= f.submit "Update my account", class: "btn btn-primary btn-round" %>
         </div>
       <% end %>
 
       <div style="text-align:center">
-      <h3>Unhappy?</h3><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-round" %>
+      <h3>Unhappy?</h3><%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-round" %>
       </div>
     </div>
   </div>

@@ -19,7 +19,14 @@
               <div class="col-md-8 ml-auto mr-auto text-center">
                 <h2 class="title"><%= truncate(@post.title, :length => 36) %></h2>
                 <h3><%= pluralize(@post.try(:weighted_score), 'point')%></h3>
-                <h4>By: <%= @post.user.email %> for <%= link_to @post.course.name, @post.course, style: "color:white" %></h4>
+                <h4>By: 
+                  <% if @post.user.anon_id == 2 %>
+                  Anonymous (<%= @post.user.reputation %>)
+                  <% else %>
+                  <%= @post.user.email %> (<%= @post.user.reputation %>)
+                  <% end %>
+
+                   for <%= link_to @post.course.name, @post.course, style: "color:white" %></h4>
               </div>
             </div>
           </div>
@@ -30,7 +37,7 @@
       <% end %>
       <div class="section">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row" style="text-align: center;">
             <div class="col-md-8 ml-auto mr-auto">
               <br>
               <div class="button-container-fluid">
