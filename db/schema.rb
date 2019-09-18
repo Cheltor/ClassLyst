@@ -158,11 +158,9 @@ ActiveRecord::Schema.define(version: 2019_08_22_012738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "business_id"
-    t.bigint "user_id"
     t.date "expdate"
     t.boolean "byed", default: false
     t.index ["business_id"], name: "index_rewards_on_business_id"
-    t.index ["user_id"], name: "index_rewards_on_user_id"
   end
 
   create_table "universities", force: :cascade do |t|
@@ -225,5 +223,4 @@ ActiveRecord::Schema.define(version: 2019_08_22_012738) do
   add_foreign_key "redeems", "users"
   add_foreign_key "rewardpurchases", "rewards"
   add_foreign_key "rewardpurchases", "users"
-  add_foreign_key "rewards", "users"
 end
