@@ -6,4 +6,7 @@ class Business < ApplicationRecord
          :trackable, :confirmable
 
   has_many :rewards
+
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
 end
