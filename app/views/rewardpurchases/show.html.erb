@@ -26,9 +26,8 @@
                   <div class="card-content">
                     <div class="container text-center">
                       <br>
-                      <p>Bring this screen to the store and show it to the cashier.</p>
-                      <p>The business will press the redeem button to confirm the reward.</p>
-                      <%= button_to 'Redeem', redeem_rewardpurchase_path(@rewardpurchase), method: :post, :class => 'btn btn-primary btn-round btn-lg' %>
+                      <p>Staff from <%= @rewardpurchase.reward.business.name %> will press the redeem button to confirm the reward is valid.</p>
+                      <%= button_to 'Redeem', redeem_rewardpurchase_path(@rewardpurchase), method: :post, :class => 'btn btn-primary btn-round btn-lg', data: { confirm: 'Are you sure? You can only redeem once!' } %>
                     </div>
                   </div>
                 </div>
