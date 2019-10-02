@@ -22,7 +22,6 @@
         <div class="card">
           <div class="card-content">
             <div class="container">
-              <h4>Reward Code: <%= current_business.code %></h4>
             <h4>Name: <%= current_business.name %></h4>
             <h4>Website: 
             <% if current_business.website.blank? %>
@@ -82,7 +81,7 @@
               </h4>
               <h4>Address:
                 <% if current_business.address.blank? %>
-                  <%= link_to 'Add an Address', edit_business_registration_path, class:"nav-link" %>
+                  Add an address!
                   <% else %>
                   <%= current_business.address %>
                 <% end %>
