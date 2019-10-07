@@ -55,7 +55,7 @@
                   </div>
               </div>
                 <br>
-                <small><% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong> for <%= link_to post.course.name, post.course %> </small>
+                <small><% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong> for <strong><%= link_to post.course.name, post.course, class:"btn btn-primary btn-sm" %></strong> </small>
                 <small class="mobile-only">
                   <br>
                 <%= link_to dislike_post_path(post), method: :put do %><i class="material-icons pull-right">thumb_down</i><% end %>
