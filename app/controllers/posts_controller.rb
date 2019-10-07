@@ -10,6 +10,16 @@ class PostsController < ApplicationController
     @posts = @search.result(distinct: true).includes(:comments).where(flagged: false).order("created_at DESC").paginate(page: params[:page], per_page: 15)
   end
 
+  # My posts
+  def myposts
+    @posts = Post.where(flagged: false).where(user: current_user).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+  end
+
+  # My comments
+  def mycomments
+    @mycomments = Comment.all.where(user: current_user).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

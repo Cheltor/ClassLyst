@@ -44,6 +44,8 @@ resources :contacts, only: [:new, :create]
   devise_for :users
   root 'home#index'
   get 'ourrewards' => 'rewards#myrewards'
+  get 'myposts' => 'posts#myposts'
+  get 'mycomments' => 'posts#mycomments'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

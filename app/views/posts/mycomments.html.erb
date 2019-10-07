@@ -1,0 +1,84 @@
+<% @title="My Comments" %>
+
+<div class="contatiner">
+  <div class="header-2">
+      <div class="page-header header-filter page-header-mini">
+        <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto text-center">
+              <br>
+              <br>
+              <h1 style="text-align:center"> My Comments</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
+  <% if @mycomments.blank? %>
+  <% else %>
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="card">
+          <div class="card-content">
+            <div class="table-responsive">
+              <div class="container-fluid">
+                <% if @mycomments.blank? %>
+                <br>
+                  <h5 style="text-align:center">You haven't made any comments yet.</h5>
+                  <% else %>
+                    <table class="table">
+                      <thead style="text-align: center;">
+                        <tr>
+                          <th>Comment Points</th>
+                          <th>Comment</th>
+                          <th>Post</th>
+                          <th>Time created</th>
+                        </tr>
+                      </thead>
+
+                      <tbody style="text-align: center;">
+                        <% @mycomments.each do |comment| %>
+                          <tr>
+                            <td>
+                              <%= comment.weighted_score %>
+                            </td>
+                            <td><%= truncate(comment.body, :length => 50) %></td>
+                            <td><strong><%= link_to truncate(comment.post.title, :length => 50), comment.post %></strong></td>
+                            <td>
+                              <%= time_ago_in_words(comment.created_at) + " ago" %>
+                            </td>
+                          </tr>
+                          <% end %>
+                      </tbody>
+                    </table>
+                    <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+  <% end %>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+   <div class="row">
+    <div class="col mr-auto ml-auto">
+      <div class="apple_pagination">
+        <div class="page_info">
+          <%= page_entries_info @mycomments %>
+        </div>
+        <%= will_paginate @mycomments, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

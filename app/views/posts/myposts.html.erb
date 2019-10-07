@@ -1,0 +1,76 @@
+<% @title="My Posts" %>
+
+<div class="contatiner">
+  <div class="header-2">
+      <div class="page-header header-filter page-header-mini">
+        <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto text-center">
+              <br>
+              <br>
+              <h1 style="text-align:center"> My Posts</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
+  <% if @posts.blank? %>
+  <% else %>
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+    <% @posts.each do |post| %>
+    <div class="card">
+      <div class="container">
+        <h4>
+          <%= link_to truncate(post.title, :length => 50), post %>
+            <% if post.url == "" %>
+            <% else %><i class="material-icons">attach_file</i>
+            <% end %>
+              <div class="pull-right desktop-only">
+                <%= link_to dislike_post_path(post), class: "pull-right", method: :put do %><i class="material-icons">thumb_down</i><% end %>
+                <%= link_to like_post_path(post), class: "pull-right", method: :put do %><i class="material-icons" style="padding-right: 5px">thumb_up</i><% end %>
+                  <div class="pull-right" style="padding-right: 10px">
+                    <%= pluralize(post.try(:weighted_score), 'point')%>
+                  </div>
+              </div>
+                <br>
+                <small><% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong> for <%= link_to post.course.name, post.course %> </small>
+                <small class="mobile-only">
+                  <br>
+                <%= link_to dislike_post_path(post), method: :put do %><i class="material-icons pull-right">thumb_down</i><% end %>
+                <%= link_to like_post_path(post), method: :put do %><i class="material-icons pull-right" style="padding-right: 5px">thumb_up</i><% end %>
+                  <div class="pull-right" style="padding-right: 10px">
+                    <%= pluralize(post.try(:weighted_score), 'point')%>
+                  </div>
+                </small>
+              </h4>
+        <p><%= truncate(post.content, :length => 250) %></p>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+   <div class="row">
+    <div class="col mr-auto ml-auto">
+      <div class="apple_pagination">
+        <div class="page_info">
+          <%= page_entries_info @posts %>
+        </div>
+        <%= will_paginate @posts, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
