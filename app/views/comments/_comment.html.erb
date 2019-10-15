@@ -22,7 +22,7 @@
   <div data-controller="reply">
     <small>
       <%= link_to like_post_comment_path(@post, comment), method: :put, class:"btn btn-info btn-neutral" do %><i class="material-icons">thumb_up</i> <%= comment.get_upvotes.size %><% end %>
-      <%= link_to "#", data: { action: "click->reply#toggle" }, class: "btn btn-primary btn-neutral d-none" do %><i class="material-icons">chat</i> Reply<% end %>
+      <%= link_to "#", data: { action: "click->reply#toggle" }, class: "btn btn-primary btn-neutral" do %><i class="material-icons">chat</i> Reply<% end %>
                               <% if comment.user == current_user %>
       <%= link_to [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-neutral" do %><i class="material-icons">delete</i><% end %>
       <% else %>
@@ -36,7 +36,7 @@
     <%= render partial: "comments/form", locals: {
       commentable: comment.commentable,
       parent_id: reply_to_comment_id(comment, nesting, max_nesting),
-      class: "mt-4 d-none",
+      class: "mt-4",
       target: "reply.form"
     } %>
   </div>
