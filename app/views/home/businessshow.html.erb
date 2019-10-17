@@ -1,0 +1,106 @@
+<% @title= truncate(@business.name, :length => 35) %>
+
+
+<body class="blog-post">
+  <div class="wrapper" style="padding-top:50px">
+    <div class="page-header header-filter page-header-mini" filter-color="black">
+
+        <div class="page-header-image" data-parallax="false" style="background-image: url('../images/blank-notebook-on-creative-workspace_925x.jpg');">
+        </div>
+        <div class="content-center">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title"><%= @business.name %></h2>
+                <h3><%= pluralize(@post.try(:weighted_score), 'point')%></h3>
+                <h4>By: 
+                  <% if @post.user.anon_id == 2 %>
+                  Anonymous (<%= @post.user.reputation %>)
+                  <% else %>
+                  <%= @post.user.email %> (<%= @post.user.reputation %>)
+                  <% end %>
+
+                   for <%= link_to @post.course.name, @post.course, style: "color:white", class:"btn btn-primary btn-sm" %></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %> <br>
+      <% end %>
+        <div class="container-fluid">
+          <div class="row" style="text-align: center;">
+            <div class="col-md-8 ml-auto mr-auto">
+              <br>
+              <div class="button-container-fluid">
+                <%= link_to like_post_path(@post), method: :put, class: "btn btn-icon btn-lg btn-info btn-round" do %>
+                  <i class="material-icons" style="padding-top:16px">thumb_up</i><%= @post.get_upvotes.size %>
+                <% end %>
+                <%= link_to dislike_post_path(@post), method: :put, class: "btn btn-icon btn-lg btn-warning btn-round" do %>
+                  <i class="material-icons" style="padding-top:16px">thumb_down</i><%= @post.get_downvotes.size %>
+                <% end %>
+                <%= link_to flag_post_path(@post), method: :patch, data: {confirm: "Are you sure?"}, class: 'btn btn-icon btn-lg btn-danger btn-round' do %>
+                  <i class="material-icons" style="padding-top:16px">flag</i>
+                <% end %>
+                <% if @post.user == current_user %>
+                    <%= link_to edit_post_path(@post), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
+                      <i class="material-icons" style="padding-top:16px">edit</i>
+                    <% end %>
+                    <%= link_to @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-icon btn-lg btn-danger btn-round' do %>
+                      <i class="material-icons" style="padding-top:16px">delete</i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="container-fluid">
+                    <h3 class="title"><%= @post.title %></h3>
+                    <p><%= simple_format @post.content %></p>
+
+                    <% if @post.url.blank? %>
+                        <br><br><br>
+                        <% else %>
+                        <div style="text-align: center">
+                        <% if @post.url.start_with?('www.') %>
+                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+                        <% elsif @post.url.start_with?('http') %>
+                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+                        <% else %>
+                        <%= link_to @post.url, "https://" + @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
+                        <% end %>
+                    <% end %>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section section-comments">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <div class="media-area">
+                  <h3 class="title text-center"><%= pluralize(@post.comments.all.count, 'Comment') %></h3>
+                    <%= render partial: "comments/form", locals: { commentable: @post } %>
+
+                     <%= render @comments, max_nesting: 7 %>
+                     <br>
+                     <%= paginate @comments %>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</body>
