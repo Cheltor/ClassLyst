@@ -47,5 +47,7 @@ resources :contacts, only: [:new, :create]
   get 'myposts' => 'posts#myposts'
   get 'mycomments' => 'posts#mycomments'
 
+  get 'businessesall' => 'home#businessesindex'
+  get 'businessshow/:id' => 'home#businessshow'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

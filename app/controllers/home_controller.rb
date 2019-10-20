@@ -32,4 +32,13 @@ class HomeController < ApplicationController
   def landingpage
     render :layout => false
   end
+
+  def businessesindex
+    @search = Business.ransack(params[:q])
+    @businesses = @search.result.paginate(page: params[:page], per_page: 15)
+  end
+
+  def businessshow
+    @business = Business.find(params[:id])
+  end
 end

@@ -1,0 +1,58 @@
+<% @title="Businesses" %>
+
+<div class="contatiner">
+  <div class="header-2">
+      <div class="page-header header-filter page-header-mini">
+        <div class="page-header-image" style="background-image: url('images/sticky-note-to-ship-code_925x.jpg');"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
+                <div class="card-body" style="padding-top:">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
+  <% if @businesses.blank? %>
+  <% else %>
+  <br>
+  <h1 style="text-align:center">Businesses</h1>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+    <% @businesses.each do |business| %>
+    <div class="card">
+      <div class="container">
+        <h4>
+          <%= business.name %>
+              </h4>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+   <div class="row">
+    <div class="col mr-auto ml-auto">
+      <div class="apple_pagination">
+        <div class="page_info">
+          <%= page_entries_info @businesses %>
+        </div>
+        <%= will_paginate @businesses, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
