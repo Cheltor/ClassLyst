@@ -35,7 +35,8 @@
                     <% if @reward.expired? %><h1>EXPIRED</h1> <% end %>
                     <h4>Cost: <%= @reward.cost %></h4>
                     <h5>Expiration Date: <%= @reward.expdate.strftime("%m/%d/%Y") %></h5>
-                    <p><%= simple_format @reward.description %></p>
+                    <p><strong><%= simple_format @reward.description %></strong></p>
+                    <p><%= simple_format @reward.Termsandconditions %></p>
                       <div style="text-align:center">
                         <% if user_signed_in? %>
                            <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
