@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_013535) do
+ActiveRecord::Schema.define(version: 2019_11_23_012437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 2019_11_21_013535) do
     t.date "expdate"
     t.boolean "byed", default: false
     t.string "Termsandconditions"
+    t.integer "rlimit"
     t.index ["business_id"], name: "index_rewards_on_business_id"
   end
 

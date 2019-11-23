@@ -37,18 +37,30 @@
                     <h5>Expiration Date: <%= @reward.expdate.strftime("%m/%d/%Y") %></h5>
                     <p><strong><%= simple_format @reward.description %></strong></p>
                     <p><%= simple_format @reward.Termsandconditions %></p>
+                    
+                    <% if current_user.rewardpurchases.where(reward: @reward).count >= @reward.rlimit %>
+                    <p>You can't purchase any more of this reward. </p>
+                    <% else %>
+                    <p>
+                      You're able to purchase this reward <%= @reward.rlimit - current_user.rewardpurchases.where(reward: @reward).count %> more times.
+                      <%= current_user.rewardpurchases.where(reward: @reward).count %>
+                    </p>
+                    <% end %>
+
+                    <p>You've purchased this reward <%= current_user.rewardpurchases.where(reward: @reward).count %>/<%= @reward.rlimit %> times.</p>
+                    
                       <div style="text-align:center">
-                        <% if user_signed_in? %>
+                        <% if user_signed_in? && current_user.rewardpurchases.where(reward: @reward).count < @reward.rlimit && current_user.karma >= @reward.cost %>
                            <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
-                                  <% end %>
-                                <% if current_business == @reward.business %>
-                                            <%= link_to edit_reward_path(@reward), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
-                                <i class="material-icons" style="padding-top:16px">edit</i>
-                              <% end %>
-                                              <%= link_to bye_reward_path(@reward), method: :patch, data: {confirm: "Are you sure?"}, class: 'btn btn-icon btn-lg btn-danger btn-round' do %>
-                  <i class="material-icons" style="padding-top:16px">delete</i>
-                <% end %>
-                      <% end %>
+                        <% end %>
+                        <% if current_business == @reward.business %>
+                          <%= link_to edit_reward_path(@reward), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
+                            <i class="material-icons" style="padding-top:16px">edit</i>
+                          <% end %>
+                          <%= link_to bye_reward_path(@reward), method: :patch, data: {confirm: "Are you sure?"}, class: 'btn btn-icon btn-lg btn-danger btn-round' do %>
+                          <i class="material-icons" style="padding-top:16px">delete</i>
+                          <% end %>
+                        <% end %>
                       </div>
                     </div>
                   </div>
