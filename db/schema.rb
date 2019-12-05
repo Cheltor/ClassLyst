@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_11_23_012437) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "anons", force: :cascade do |t|
     t.string "hide"
     t.datetime "created_at", null: false
@@ -53,9 +50,9 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "commentable_type"
-    t.bigint "commentable_id"
+    t.integer "commentable_id"
     t.integer "parent_id"
     t.text "body"
     t.datetime "created_at", null: false
@@ -65,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
-    t.bigint "post_id"
+    t.integer "post_id"
     t.datetime "deleted_at"
     t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
@@ -83,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.bigint "university_id"
+    t.integer "university_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -91,8 +88,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
   end
 
   create_table "enrolls", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "course_id"
+    t.integer "user_id"
+    t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_enrolls_on_course_id"
@@ -106,12 +103,12 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.bigint "course_id"
-    t.bigint "ptype_id"
+    t.integer "course_id"
+    t.integer "ptype_id"
     t.string "title"
     t.string "url"
     t.text "content"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "flagged", default: false
@@ -137,8 +134,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
   end
 
   create_table "redeems", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "rewardpurchase_id"
+    t.integer "user_id"
+    t.integer "rewardpurchase_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rewardpurchase_id"], name: "index_redeems_on_rewardpurchase_id"
@@ -146,8 +143,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
   end
 
   create_table "rewardpurchases", force: :cascade do |t|
-    t.bigint "reward_id"
-    t.bigint "user_id"
+    t.integer "reward_id"
+    t.integer "user_id"
     t.string "rewardname"
     t.string "rewardbusiness"
     t.integer "rewardcost"
@@ -209,7 +206,7 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "votes", id: :serial, force: :cascade do |t|
+  create_table "votes", force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
     t.string "voter_type"
@@ -223,16 +220,4 @@ ActiveRecord::Schema.define(version: 2019_11_23_012437) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
-  add_foreign_key "courses", "universities"
-  add_foreign_key "enrolls", "courses"
-  add_foreign_key "enrolls", "users"
-  add_foreign_key "posts", "courses"
-  add_foreign_key "posts", "ptypes"
-  add_foreign_key "posts", "users"
-  add_foreign_key "redeems", "rewardpurchases"
-  add_foreign_key "redeems", "users"
-  add_foreign_key "rewardpurchases", "rewards"
-  add_foreign_key "rewardpurchases", "users"
 end
