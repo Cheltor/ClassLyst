@@ -5,7 +5,7 @@ class Reward < ApplicationRecord
   validate :expiration_date_cannot_be_in_the_past
 
   def expiration_date_cannot_be_in_the_past
-    if expiration_date.present? && expiration_date < Date.today
+    if expdate.present? && expdate < Date.today
       errors.add(:expdate, "can't be in the past")
     end
   end  

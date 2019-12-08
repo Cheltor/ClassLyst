@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
               <h2 class="title"><%= truncate(@reward.name, :length => 36) %></h2>
-              <h4>By: <%= @reward.business.name %>
+              <h4>From: <%= @reward.business.name %>
             </div>
           </div>
         </div>
@@ -37,18 +37,6 @@
                     <h5>Expiration Date: <%= @reward.expdate.strftime("%m/%d/%Y") %></h5>
                     <p><strong><%= simple_format @reward.description %></strong></p>
                     <p><%= simple_format @reward.Termsandconditions %></p>
-                    
-                    <% if current_user.rewardpurchases.where(reward: @reward).count >= @reward.rlimit %>
-                    <p>You can't purchase any more of this reward. </p>
-                    <% else %>
-                    <p>
-                      You're able to purchase this reward <%= @reward.rlimit - current_user.rewardpurchases.where(reward: @reward).count %> more times.
-                      <%= current_user.rewardpurchases.where(reward: @reward).count %>
-                    </p>
-                    <% end %>
-
-                    <p>You've purchased this reward <%= current_user.rewardpurchases.where(reward: @reward).count %>/<%= @reward.rlimit %> times.</p>
-                    
                       <div style="text-align:center">
                         <% if user_signed_in? && current_user.rewardpurchases.where(reward: @reward).count < @reward.rlimit && current_user.karma >= @reward.cost %>
                            <%= button_to 'Purchase', rewardpurchase_reward_path(@reward), method: :post, :class => 'btn btn-primary btn-round' %>
@@ -62,6 +50,13 @@
                           <% end %>
                         <% end %>
                       </div>
+                      <% if user_signed_in? %>
+                        <% if current_user.rewardpurchases.where(reward: @reward).count <= @reward.rlimit %>
+                        <p>You've purchased this reward <%= current_user.rewardpurchases.where(reward: @reward).count %>/<%= @reward.rlimit %> times.</p>
+                        <% else %>
+                        <p><strong>You've met the limit and can't purchase any more of this reward.</strong></p>
+                        <% end %>
+                      <% end %>                      
                     </div>
                   </div>
                 </div>
