@@ -15,6 +15,17 @@
       </div>
       <div class="collapse navbar-collapse show">
         <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item d-none d-lg-block" style="text-align:center; padding-right: 15px">
+            <%= search_form_for @q, url: search_posts_path, html: { method: :post} do |f| %>
+              <div class="row">
+                <div class="form-group">
+                 <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
+                </div>
+              </div>
+            <% end %>
+          </li>
+          
           <li class="nav-item" style="text-align:center"><%= link_to 'Posts', posts_path, class:"nav-link" %></li>
           <li class="nav-item" style="text-align:center">
             <%= link_to 'Courses', courses_path, class:"nav-link "%>
@@ -29,3 +40,16 @@
       </div>
     </div>
 </nav>
+<div class="container d-lg-none" style="padding-top:90px">
+  <a class="nav-item d-lg-none" style="text-align:center; padding-right: 15px">
+    <%= search_form_for @q, url: search_posts_path, html: { method: :post} do |f| %>
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <div class="form-group">
+           <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </a>
+</div>

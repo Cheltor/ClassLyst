@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'home/landingpage'
-resources :contacts, only: [:new, :create]
+  resources :contacts, only: [:new, :create]
 
   get 'profsignup' => 'home#profsignup'
   get 'businessinfo' => 'home#businessinfo'
@@ -31,6 +31,9 @@ resources :contacts, only: [:new, :create]
       put "like",    to:"posts#upvote"
       put "dislike", to:"posts#downvote"
       patch :flag
+    end
+    collection do
+      match 'search' => 'posts#search', via: [:get, :post], as: :search
     end
   end
   resources :courses do

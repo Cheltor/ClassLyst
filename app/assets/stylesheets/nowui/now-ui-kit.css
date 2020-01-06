@@ -27,15 +27,30 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+/* Display Navbar only on mobile or desktop */
+@media screen and (max-width: 992px) {
+  .nav-desktop-only {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .nav-mobile-only {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 /* Display only on mobile or desktop */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 769px) {
   .desktop-only {
     visibility: hidden;
     display: none;
   }
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 769px) {
   .mobile-only {
     visibility: hidden;
     display: none;
