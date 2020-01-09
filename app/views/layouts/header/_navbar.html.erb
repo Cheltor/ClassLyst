@@ -2,9 +2,7 @@
     <div class="container" style="font-size: 16px">
       <div class="navbar-translate">
         <a href="/">
-          <p>
-            ClassLyst
-          </p>          
+          <img src="<%= image_url('Classlyst-Logo-B2.png') %>" alt="" height="20">      
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,11 +12,10 @@
         </button>
       </div>
       <div class="collapse navbar-collapse show">
-        <ul class="navbar-nav ml-auto">
-          
+        <ul class="navbar-nav ml-auto" style="padding-top: 8px">
           <li class="nav-item d-none d-lg-block" style="text-align:center; padding-right: 15px">
             <%= search_form_for @q, url: search_posts_path, html: { method: :post} do |f| %>
-              <div class="row">
+              <div class="row" style="margin-top: 10px">
                 <div class="form-group">
                  <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
                 </div>
@@ -40,16 +37,3 @@
       </div>
     </div>
 </nav>
-<div class="container d-lg-none" style="padding-top:90px">
-  <a class="nav-item d-lg-none" style="text-align:center; padding-right: 15px">
-    <%= search_form_for @q, url: search_posts_path, html: { method: :post} do |f| %>
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <div class="form-group">
-           <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </a>
-</div>

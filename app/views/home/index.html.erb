@@ -9,239 +9,138 @@
 <% else %>
 
 
-<div class="header-2 desktop-only" style="padding-top: 55px">
-    <div class="page-header header-filter page-header">
-      <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center" style="padding-top: 60px">
-              <% flash.each do |name, msg| %>
-                  <br>
-              <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %>
-              <% end %>
-            <h2>Find resources for your classes here!</h2>
-          </div>
-          <div class="col-md-10 ml-auto mr-auto">
-            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-              <div class="card-body">
-            <%= search_form_for @search, url: posts_path, defaults: {wrapper: :inline_field4} do |f| %>
-                  <div class="row">
-                    <div class="col-md-9">
-                      <div class="form-group">
-                   <%= f.text_field :title_or_content_or_course_name_or_comments_body_cont, placeholder: 'Search by subject, topic or class', class:"form-control form-control-lg", style:"border-width: 2px;" %>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-              <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="info">
-                          <%= link_to posts_path do %>
-            <div class="icon icon-success icon-circle">
-                <i class="material-icons">
-                question_answer
-                </i>
-            </div><% end %>
-
-              <div class="description">
-                <%= link_to posts_path do %>
-                <h4 class="info-title" style="font-weight: bold">Save Time</h4>
-                <% end %>
-                <p style="font-weight: 900; color: white">Find answers to questions already asked, informaiton found, and more.</p>
-              </div>
-
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="info">
-                          <%= link_to courses_path do %>
-            <div class="icon icon-info icon-circle">
-                <i class="material-icons">
-                account_balance
-                </i>
-            </div><% end %>
-              <div class="description">
-                <%= link_to courses_path do %>
-                <h4 class="info-title" style="font-weight: bold">Collaborate</h4>
-                <% end %>
-                <p style="font-weight: 900; color: white">Work with other students both past and present who have taken your courses.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="info">
-                          <%= link_to rewards_path do %>
-            <div class="icon icon-warning icon-circle">
-                <i class="material-icons">
-                redeem
-                </i>
-            </div><% end %>
-              <div class="description">
-                <%= link_to rewards_path do %>
-                <h4 class="info-title" style="font-weight: bold">Earn Rewards</h4>
-                <% end %>
-                <p style="font-weight: 900; color: white">Earn points for helpful posts/comments and redeem for discounts at local businesses.</p>
-              </div>
-            </div>
+<div class="container d-lg-none" style="padding-top:90px">
+  <a class="nav-item d-lg-none" style="text-align:center; padding-right: 15px">
+    <%= search_form_for @q, url: search_posts_path, html: { method: :post} do |f| %>
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <div class="form-group">
+           <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  </a>
 </div>
-
-
-<div class="header-2 mobile-only">
-    <div class="page-header header-filter page-header">
-      <div class="page-header-image" style="background-image: url('images/business-team-meeting-boardroom_925x.jpg');"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ml-auto mr-auto text-center" style="padding-top:90px">
-            <h1>Find resources for your classes here!</h1>
-          </div>
-          <div class="col-md-10 ml-auto mr-auto">
-            <div class="card card-raised card-form-horizontal card-plain" data-background-color="">
-              <div class="card-body">
-            <%= search_form_for @search, url: posts_path, defaults: {wrapper: :inline_field4} do |f| %>
-                  <div class="row">
-                    <div class="col-md-9">
-                      <div class="form-group">
-                   <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Keywords', class:"form-control", style:"border-width: 2px" %>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-              <%= f.submit "Search", class:"btn btn-primary btn-round btn-block" %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-12 ml-auto mr-auto">
-            <div class="info">
-            <%= link_to posts_path do %>
-            <div class="icon icon-success icon-circle">
-                <i class="material-icons">
-                question_answer
-                </i>
-            </div><% end %>
-
-              <div class="description">
-                <%= link_to posts_path do %>
-                <h4 class="info-title" style="font-weight: bold">All Posts</h4>
-                <% end %>
-                <p style="font-weight: 900; color: white">Find answers to questions already asked, informaiton found, and more.</p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="d-none d-lg-block" style="padding-top: 85px">
+  
 </div>
-
-<div class="features-5">
+<div class="contatiner">
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
+      <% end %>
+  <% if @posts.blank? %>
+  <% else %>
+  <br>
   <div class="container">
     <div class="row">
-      <div class="col-md-12 mr-auto ml-auto">
-        <h2 class="title" style="text-align:center">On the shoulders of giants.</h2>
-        <h4 class="description" style="text-align:center">You don't need to spend time searching for resources that your classmates have already found. You're not the first person to get confused on that question. Join the community and spend less time studying. Your helpful posts and comments earn you points and discounts at local businesses. </h4>
-
-        <h4></h4>
+      <div class="col-xl-4 d-xl-none">
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="card-bodyquote">
+                                <h4 class="header-title mb-3">Welcome to Classlyst!</h4>
+                                <p>Use Classlyst to find resources that are shared by students who have already taken this class.</p>
+                                <p class="">When you sign in, you can "follow" classes you are taking. Your classes will show up in your dashboard, making it easier to see when others post in your classes.</p>
+                                
+                    <footer class="text-center">
+                        <%= link_to 'Checkout your classes!', courses_path, class:"btn btn-primary mr-auto ml-auto" %>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="tablet-container">
-          <div class="container-fluid">
-            <h3 style="text-align:center">Recent Posts</h3>
-            <div class="card">
-              <div class="card-content" style="text-align:center">
-                  <div class="table-responsive">
-                      <table class="table">
-                          <thead class="text-primary">
-                              <tr>
-                                <th>Title</th>
-                                <th>Course</th>
-                                <th>Time created</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% @posts.first(5).each do |post| %>
-                              <tr>
-                                <td><strong><%= link_to post.title, post %></strong></td>
-                                <td><%= link_to post.course.name, post.course %></td>
-                                <td><%= time_ago_in_words(post.created_at) + " ago" %></td>
-                              </tr>
-                            <% end %>
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="row">
-                    <div class="col mr-auto ml-auto">
-                      <div style="background:#f1f1f1; text-align:center; padding: 1em">
-                        <%= link_to 'More Posts', posts_path, class:"btn btn-primary" %>
-                      </div>
-                    </div>
-                  </div>
+      <div class="col-xl-8">
+        <h4>Posts</h4>
+    <% @posts.each do |post| %>
+    <div class="card">
+      <div class="card-header mt-2 text-center">
+        <%= link_to post.course.name_with_univ, post.course %>
+      </div>
+      <div class="card-body" style="padding: 0px">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="btn-group">
+                <%= link_to like_post_path(post), class: "mr-2", method: :put do %><i class="material-icons" style="">keyboard_arrow_up</i><% end %>
+                <span class=""><%= post.try(:weighted_score) %></span>
+                <%= link_to dislike_post_path(post), class: "ml-2", method: :put do %><i class="material-icons" style="">keyboard_arrow_down</i><% end %>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="card-title"><%= link_to truncate(post.title, :length => 50), post %></h4>
+              <p class="card-text"><%= truncate(post.content, :length => 250) %></p>
+            </div>            
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="tablet-container">
-          <div class="container-fluid">
-            <h3 style="text-align:center">Recent Rewards</h3>
+      <div class="card-footer text-muted mb-2 text-center" style="margin-top: 5px">
+        <% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+      <div class="col-xl-4 d-none d-xl-block">
             <div class="card">
-              <div class="card-content" style="text-align:center">
-              <% if @rewards.blank? %>
-                <br>
-                <br>
-                <h4 style="text-align:center">More rewards are coming soon!</h4>
-                <br>
-                <br>
-                <% else %>
-                  <div class="table-responsive">
-                      <table class="table">
-                          <thead class="text-primary">
-                              <tr>
-                                <th>Reward</th>
-                                <th>Cost</th>
-                                <th>Expires</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <% @rewards.first(5).each do |reward| %>
-                              <tr>
-                                <td><strong><%= link_to reward.name, reward %></strong></td>
-                                <td><%= pluralize(reward.try(:cost), 'Point') %></td>
-                                <td><%= reward.expdate.strftime("%m/%d/%Y") %></td>
-                              </tr>
-                            <% end %>
-                          </tbody>
-                      </table>
-                  </div>
-
-                  <div class="row">
-                    <div class="col mr-auto ml-auto">
-                      <div style="background:#f1f1f1; text-align:center; padding: 1em">
-                        <%= link_to 'More Rewards', rewards_path, class:"btn btn-primary" %>
-                      </div>
-                    </div>
-                  </div>
-                  <% end %>
-              </div>
+                <div class="card-body">
+                    <blockquote class="card-bodyquote">
+                                    <h4 class="header-title mb-3">Welcome to Classlyst</h4>
+                                    <p>Use Classlyst to find resources that are shared by students who have already taken this class. </p>
+                                    <p class="">When users sign in, they are able to "follow" the classes they are taking. Followed classes show up in the users dashboard, making it easier to see when others post in your classes.</p>
+                                    
+                        <footer>
+                            <%= link_to 'Find your classes!', courses_path, class:"btn btn-primary mr-auto ml-auto" %>
+                        </footer>
+                    </blockquote>
+                </div>
             </div>
+            <%= link_to rewards_path do %>
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <blockquote class="card-bodyquote">
+                                    <h4 class="header-title mb-3">Earn Rewards</h4>
+                                    <p>Classlyst staff is working with local businesses to provide the most helpful students with rewards. Users can earn points by posting helpful resources for other students and answering questions.</p>
+                    </blockquote>
+                </div>
+            </div>
+            <% end %>
+        </div> <!-- end col -->
+      <div class="col-xl-4 d-xl-none">
+            <%= link_to rewards_path do %>
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <blockquote class="card-bodyquote">
+                                    <h4 class="header-title mb-3 text-center">Earn Rewards</h4>
+                                    <p>Classlyst staff is working with local businesses to provide the most helpful students with rewards. Users can earn points by posting helpful resources for other students and answering questions.</p>
+                    </blockquote>
+                </div>
+            </div>
+            <% end %>
+        </div>
+  </div>
+  </div>
+  <div class="container">
+   <div class="row">
+    <div class="col mr-auto ml-auto">
+      <div class="apple_pagination">
+        <div class="page_info">
+          <%= page_entries_info @posts %>
+        </div>
+        <%= will_paginate @posts, :container => false %>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="about-contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mr-auto ml-auto">
+          <h4 class="text-center title" style="margin-top: 0px">Couldn't find what you're looking for?</h4>
+          <h4 class="text-center description" style="margin-top: 0px">Submit a post with your question and see if anyone else has found it.</h4>
+          <div style="text-align:center; padding-bottom: 10px">
+          <%= link_to 'New Post', new_post_path, class:"btn btn-primary btn-lg" %>
           </div>
         </div>
       </div>
