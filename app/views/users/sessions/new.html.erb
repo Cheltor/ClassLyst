@@ -1,81 +1,57 @@
 <% @title="Student Sign In" %> 
-  <div class="pricing-3 section-image page-header header-filter" style="background-image: url('../images/tech-meeting-flatlay.jpg');">
-      <div class="container">
-        <div class="row">
+<div class="container" style="padding-top:90px">
+  <div class="row">
+    <div class="col-md-6 ml-auto mr-auto text-center">
+    <% flash.each do |name, msg| %> 
+     <br>  
+      <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %> 
+    <% end %> 
+    </div>
+  </div>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-4">
+      <div class="desktop-only">
+        <br>
+        <br>
+      </div>
 
-          <div class="col-md-6 ml-auto mr-auto text-center">
-          <% flash.each do |name, msg| %> 
-           <br>  
-            <%= content_tag(:div, msg, class: "alert alert-info", style: "color: #fff; text-align:center") %> 
-          <% end %> 
-            <h2 class="title">Spend more time doing things you like</h2>
-            <h5 class="description">Spend less time searching for information that has already been found.</h5>
-          </div>
-        </div>
-        <div class="space-top"></div>
-        <div class="row">
-          <div class="col-lg-6 desktop-only">
-            <div class="card card-plain">
-              <div class="card-body">
-                  <h4 class="card-title" style="color: white">Stay Up To Date</h4>
-                <p class="card-description">
-                  Follow your classes and stay in the loop whenever new information is found. 
-                </p>
-                  <h4 class="card-title" style="color: white">Earn Points</h4>
-                <h6 class="card-category text-muted"></h6>
-                <p class="card-description">
-                  Upvotes on posts and comments earn you points. Points can be exchanged for rewards at local businesses.
-                </p>
-                  <h4 class="card-title" style="color: white">Contribute To The Conversation</h4>
-                <h6 class="card-category text-muted"></h6>
-                <p class="card-description">
-                  Members are able to post resources and make comments on other posts. 
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 offset-lg-1">
-            <div class="desktop-only">
-              <br>
-              <br>
-            </div>
+      <div class="card card-pricing" data-background="color" data-color="blue">
+        <div class="card-body">
+          <h6 class="card-category" style="color:black">Student Sign In</h6>
+          
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <br>
+                            <div class="form-group">
+                  <%= f.email_field :email, autofocus: true, :class => "form-control", placeholder: "School Email" %>
+                            </div>
+                            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off", :class => "form-control", placeholder: "Password" %>
+                            </div>
 
-            <div class="card card-pricing" data-background="color" data-color="blue">
-              <div class="card-body">
-                <h6 class="card-category" style="color:black">Student Sign In</h6>
-                
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <br>
-                                  <div class="form-group">
-                        <%= f.email_field :email, autofocus: true, :class => "form-control", placeholder: "School Email" %>
-                                  </div>
-                                  <div class="form-group">
-                    <%= f.password_field :password, autocomplete: "off", :class => "form-control", placeholder: "Password" %>
-                                  </div>
-  
-                                  <!-- If you want to add a checkbox to this form, uncomment this code
-  
-                                  <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input class="form-check-input" type="checkbox">
-                                      <span class="form-check-sign"></span>
-                                      I agree to the terms and <a href="#something">conditions</a>.
-                                    </label>
-                                  </div> -->
-  
-                                  <div class="card-footer text-center">
-                                    
-                      <%= f.submit "Log in", class: "btn btn-primary btn-round btn-lg" %>
-                                  </div>
-                                  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-                                    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
-                                    <br>
-                                    <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-primary btn-simple btn-round btn-lg" %>
-                                  <br>
-                <% end %>
-              </div>
-            </div>
-          </div>
+                            <!-- If you want to add a checkbox to this form, uncomment this code
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-sign"></span>
+                                I agree to the terms and <a href="#something">conditions</a>.
+                              </label>
+                            </div> -->
+
+                            <div class="card-footer text-center">
+                              
+                <%= f.submit "Log in", class: "btn btn-primary btn-round btn-lg" %>
+                            </div>
+                            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+                              <br>
+                              <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-primary btn-simple btn-round btn-lg" %>
+                            <br>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
+  </div>
