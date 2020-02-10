@@ -27,7 +27,7 @@
             <br>
             <div class="">
               <div class="field">
-                <label>Question or Resource?</label><br />
+                <label>Is this a Question or Resource?</label><br />
                 <%= f.collection_select :ptype_id, Ptype.all, :id, :name, {}, {:class=>'form-control'} %>
               </div>
             </div>

@@ -9,7 +9,7 @@
 
 <body class="blog-post">
   <div class="wrapper" style="padding-top:50px">
-    <div class="page-header header-filter page-header-mini" filter-color="black">
+    <!-- <div class="page-header header-filter page-header-mini" filter-color="black">
 
         <div class="page-header-image" data-parallax="false" style="background-image: url('../images/blank-notebook-on-creative-workspace_925x.jpg');">
         </div>
@@ -31,69 +31,58 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %> <br>
       <% end %>
-        <div class="container-fluid">
-          <div class="row" style="text-align: center;">
-            <div class="col-md-8 ml-auto mr-auto">
-              <br>
-              <div class="button-container-fluid">
-                <%= link_to like_post_path(@post), method: :put, class: "btn btn-icon btn-lg btn-info btn-round" do %>
-                  <i class="material-icons" style="padding-top:16px">thumb_up</i><%= @post.get_upvotes.size %>
-                <% end %>
-                <%= link_to dislike_post_path(@post), method: :put, class: "btn btn-icon btn-lg btn-warning btn-round" do %>
-                  <i class="material-icons" style="padding-top:16px">thumb_down</i><%= @post.get_downvotes.size %>
-                <% end %>
-                <%= link_to flag_post_path(@post), method: :patch, data: {confirm: "Are you sure?"}, class: 'btn btn-icon btn-lg btn-danger btn-round' do %>
-                  <i class="material-icons" style="padding-top:16px">flag</i>
-                <% end %>
-                <% if @post.user == current_user %>
-                    <%= link_to edit_post_path(@post), :class => 'btn btn-icon btn-lg btn-success btn-round' do %>
-                      <i class="material-icons" style="padding-top:16px">edit</i>
-                    <% end %>
-                    <%= link_to @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-icon btn-lg btn-danger btn-round' do %>
-                      <i class="material-icons" style="padding-top:16px">delete</i>
-                    <% end %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
         </div>
         <br>
+        <br class="d-none d-lg-block">
+        <br class="d-none d-lg-block">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">
                 <div class="card">
                   <div class="card-content">
-                    <div class="container-fluid">
-                    <h3 class="title"><%= @post.title %></h3>
-                    <p><%= simple_format @post.content %></p>
-
-                    <% if @post.url.blank? %>
-                        <br><br><br>
-                        <% else %>
-                        <div style="text-align: center">
-                        <% if @post.url.start_with?('www.') %>
-                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
-                        <% elsif @post.url.start_with?('http') %>
-                        <%= link_to truncate(@post.url, :length => 35), @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
-                        <% else %>
-                        <%= link_to @post.url, "https://" + @post.url, :target => "_blank", class:"btn btn-primary btn-round btn-lg"%>
-                        <% end %>
-                    <% end %>
-
-
-                    </div>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-3 d-sm-none" style="padding-top: 20px; padding-bottom: 20px">
+                          <ul class="list-group">
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to like_post_path(@post), method: :put do %><i class="material-icons" style="">thumb_up</i><% end %></li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0">0 </li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to dislike_post_path(@post), method: :put do %><i class="material-icons" style="">thumb_down</i><% end %></li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to flag_post_path(@post), method: :patch do %><i class="material-icons" style="color: red">flag</i><% end %></li>
+                          </ul>
+                        </div>
+                        <div class="col-2 d-none d-sm-block d-md-none" style="padding-top: 20px; padding-bottom: 20px">
+                          <ul class="list-group">
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to like_post_path(@post), method: :put do %><i class="material-icons" style="">thumb_up</i><% end %></li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0">0 </li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to dislike_post_path(@post), method: :put do %><i class="material-icons" style="">thumb_down</i><% end %></li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to flag_post_path(@post), method: :patch do %><i class="material-icons" style="color: red">flag</i><% end %></li>
+                          </ul>
+                        </div>
+                        <div class="col-1 d-none d-md-block" style="padding-top: 20px; padding-bottom: 20px">
+                          <ul class="list-group">
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to like_post_path(@post), method: :put do %><i class="material-icons" style="">thumb_up</i><% end %></li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0">0 </li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to dislike_post_path(@post), method: :put do %><i class="material-icons" style="">thumb_down</i><% end %></li>
+                            <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to flag_post_path(@post), method: :patch do %><i class="material-icons" style="color: red">flag</i><% end %></li>
+                          </ul>
+                        </div>
+                        <div class="col">
+                          <h4 class="card-title"><%= link_to @post.title %></h4>
+                          <p class="card-text"><%= simple_format @post.content %></p>
+                          <br>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="section section-comments">
+        <div class="section section-comments" style="padding: 0px">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">

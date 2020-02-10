@@ -1,85 +1,85 @@
-<% @title="Posts" %>
-<div class="container d-lg-none" style="padding-top:90px">
+<% @title="- Posts" %>
+<div class="container d-lg-none" style="padding-top:80px">
   <a class="nav-item d-lg-none" style="text-align:center; padding-right: 15px">
     <%= search_form_for @q, url: search_posts_path, html: { method: :post} do |f| %>
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto text-center">
-          <div class="form-group">
-           <%= f.text_field :title_or_content_or_comments_body_cont, placeholder: 'Search all of the posts', class:"form-control", style:"border-width: 2px;" %>
-          </div>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal">
+            Search
+          </button>       
         </div>
       </div>
     <% end %>
   </a>
 </div>
-<div class="d-none d-lg-block" style="padding-top: 85px">
-  
+<div class="d-none d-lg-block">
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 <div class="contatiner">
-      <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %>
-      <% end %>
   <% if @posts.blank? %>
   <% else %>
   <br>
   <div class="container">
     <div class="row">
-      <div class="col-xl-8 offset-xl-2">
-        <h4>Posts</h4>
-    <% @posts.each do |post| %>
-    <div class="card">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="card-header mt-2 text-center">
-            <%= link_to post.course.name_with_univ, post.course %>
-          </div>          
-        </li>
-        <li class="list-group-item">
-          <div class="card-body" style="padding: 0px">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                  <div class="btn-group">
-                    <%= link_to like_post_path(post), class: "mr-2", method: :put do %><i class="material-icons" style="">thumb_up</i><% end %>
-                    <span class=""><strong><%= post.try(:weighted_score) %></strong></span>
-                    <%= link_to dislike_post_path(post), class: "ml-2", method: :put do %><i class="material-icons" style="">thumb_down</i><% end %>
+      <div class="col-xl-10 offset-xl-1">
+        <h4 style="margin-top: 0px; text-align: center">Posts</h4>
+          <% @posts.each do |post| %>
+          <div class="card">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="card-header mt-2 text-center">
+                  <%= link_to post.course.name_with_univ, post.course %>
+                </div>          
+              </li>
+              <li class="list-group-item">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-3 d-sm-none">
+                      <ul class="list-group">
+                        <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to like_post_path(post), method: :put do %><i class="material-icons" style="">thumb_up</i><% end %></li>
+                        <li class="list-group-item mx-auto border-0 m-0 p-0">0 </li>
+                        <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to dislike_post_path(post), method: :put do %><i class="material-icons" style="">thumb_down</i><% end %></li>
+                      </ul>
+                    </div>
+                    <div class="col-2 d-none d-sm-block d-md-none">
+                      <ul class="list-group">
+                        <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to like_post_path(post), method: :put do %><i class="material-icons" style="">thumb_up</i><% end %></li>
+                        <li class="list-group-item mx-auto border-0 m-0 p-0">0 </li>
+                        <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to dislike_post_path(post), method: :put do %><i class="material-icons" style="">thumb_down</i><% end %></li>
+                      </ul>
+                    </div>
+                    <div class="col-1 d-none d-md-block">
+                      <ul class="list-group">
+                        <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to like_post_path(post), method: :put do %><i class="material-icons" style="">thumb_up</i><% end %></li>
+                        <li class="list-group-item mx-auto border-0 m-0 p-0">0 </li>
+                        <li class="list-group-item mx-auto border-0 m-0 p-0"><%= link_to dislike_post_path(post), method: :put do %><i class="material-icons" style="">thumb_down</i><% end %></li>
+                      </ul>
+                    </div>
+                    <div class="col">
+                      <h4 class="card-title" style="margin-top: 0px"><%= link_to truncate(post.title, :length => 50), post %></h4>
+                      <p class="card-text"><%= truncate(post.content, :length => 250) %></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <h4 class="card-title"><%= link_to truncate(post.title, :length => 50), post %></h4>
-                  <p class="card-text"><%= truncate(post.content, :length => 250) %></p>
-                </div>            
-              </div>
-            </div>
+              </li>
+              <li class="list-group-item">
+                <div class="card-footer text-muted mb-2 text-center" style="margin-top: 5px">
+                  <% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong>
+                </div>          
+              </li>
+            </ul>
           </div>
-        </li>
-        <li class="list-group-item">
-          <div class="card-footer text-muted mb-2 text-center" style="margin-top: 5px">
-            <% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong>
-          </div>          
-        </li>
-      </ul>
-    </div>
-    <% end %>
-  <% end %>
-  </div>
-  </div>
-  </div>
-  <div class="container">
-   <div class="row">
-    <div class="col mr-auto ml-auto">
-      <div class="apple_pagination">
-        <div class="page_info">
-          <%= page_entries_info @posts %>
+          <% end %>
+          <% end %>
         </div>
-        <%= will_paginate @posts, :container => false %>
       </div>
-    </div>
   </div>
 </div>
-  <div class="about-contact">
+<div class="about-contact">
     <div class="container">
       <div class="row">
         <div class="col-md-8 mr-auto ml-auto">
@@ -92,6 +92,17 @@
       </div>
     </div>
   </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input class="form-control" type="text" placeholder="Search Items">
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </div>
 </div>
-
-

@@ -5,6 +5,6 @@ class Course < ApplicationRecord
   has_many :users, :through => :enrolls
 
   def name_with_univ
-  	"#{name}, #{university.name}"
+  	"#{name} - #{university.name}"
   end
 end
