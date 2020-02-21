@@ -13,24 +13,24 @@
     <% if comment.user.anon_id == 2 %>
       <strong>Anonymous (<%= comment.user.reputation %>)</strong>
     <% else %>
-      <strong><%= comment.user.email %> (<%= comment.user.reputation %>)</strong>
+      <strong><%= comment.user.email.slice(0, comment.user.email.index('@')) %>(<%= comment.user.reputation %>)</strong>
     <% end %>
       posted
   <div>
 
     <%= simple_format comment.body %>
   <div data-controller="reply">
-      <%= link_to like_post_comment_path(@post, comment), method: :put, class:"btn btn-info btn-neutral" do %><i class="material-icons">thumb_up</i> <%= comment.get_upvotes.size %><% end %>
-      <a class="btn btn-primary btn-neutral" data-toggle="collapse" href='#<%= comment.id %>' role="button" aria-expanded="false" aria-controls="collapseExample">
+      <%= link_to like_post_comment_path(@post, comment), method: :put, class:"btn btn-info btn-neutral ml-2 mr-2", style:"padding: 0px" do %><i class="material-icons">thumb_up</i> <%= comment.get_upvotes.size %><% end %>
+      <a class="btn btn-primary btn-neutral" data-toggle="collapse" href='#<%= comment.id %>' role="button" aria-expanded="false" aria-controls="collapseExample" style="padding: 0px">
         <i class="material-icons">chat</i> Reply
       </a>
       <% if comment.user == current_user %>
-      <%= link_to [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-neutral" do %><i class="material-icons">delete</i>Delete<% end %>
+      <%= link_to [comment.commentable, comment], method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-neutral ml-2 mr-2", style:"padding: 0px" do %><i class="material-icons">delete</i>Delete<% end %>
       <% else %>
       <% end %>
       <% if comment.deleted? %>
       <% else %>
-        <%= link_to hide_post_comment_path(@post, comment), method: :patch, data: {confirm: "Are you sure?"}, class:"btn btn-warning btn-neutral" do %><i class="material-icons">flag</i>Flag<% end %>
+        <%= link_to hide_post_comment_path(@post, comment), method: :patch, data: {confirm: "Are you sure?"}, class:"btn btn-warning btn-neutral ml-2 mr-2", style:"padding: 0px" do %><i class="material-icons">flag</i>Flag<% end %>
       <% end %>
 
     <p>
