@@ -13,6 +13,17 @@
     <% end %>
   </a>
 </div>
+<div class="container d-lg-none">
+  <a class="nav-item d-lg-none" style="text-align:center; padding-right: 15px">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <% flash.each do |name, msg| %>
+            <%= content_tag(:div, msg, class: "alert alert-info", style: "text-align:center") %> <br>
+          <% end %>      
+        </div>
+      </div>
+  </a>
+</div>
 <div class="d-none d-lg-block">
   <br>
   <br>
@@ -68,7 +79,7 @@
               </li>
               <li class="list-group-item">
                 <div class="card-footer text-muted mb-2 text-center" style="margin-top: 5px">
-                  <% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong>
+                  <% if post.ptype.id == 2 %> posted <% else %> asked <% end %> <%= time_ago_in_words(post.created_at) %> ago by <strong><%= post.user.email.slice(0, post.user.email.index('@')) %>(<%= post.user.try(:reputation) %>)</strong>
                 </div>          
               </li>
             </ul>
